@@ -1,6 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import Footer from './Footer.jsx'
+
 
 import Home2 from '../assets/Hero.png'
 
@@ -73,6 +75,7 @@ const App = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }
