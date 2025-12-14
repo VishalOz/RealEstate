@@ -5,7 +5,7 @@ body {
 
 
 .footer {
-  background: linear-gradient(135deg, #212127 0%, #212325 100%);
+  background: linear-gradient(135deg, #202025 0%, #212325 100%);
   color: #ffffff;
   padding: 60px 20px 20px;
   margin-top: 80px;
@@ -38,12 +38,6 @@ body {
   margin-bottom: 10px;
 }
 
-.social-links {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 20px;
@@ -54,4 +48,15 @@ body {
   margin: 0;
   font-size: 13px;
   color: #999999;
+}
+
+h4,h2,h1 {
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+}
+
+p {
+  font-weight: 200;
+  color: #6b7280; 
+  font-family: "Inter", sans-serif;
 }
