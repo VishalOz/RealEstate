@@ -2,3 +2,61 @@ body {
   font-family: "'Outfit', sans-serif";
   background: #F8F9FA;
 }
+
+
+.footer {
+  background: linear-gradient(135deg, #202025 0%, #212325 100%);
+  color: #ffffff;
+  padding: 60px 20px 20px;
+  margin-top: 80px;
+  font-family: "Inter", sans-serif;
+}
+
+.footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-section h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #f1f1f1;
+}
+
+.footer-section p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #cccccc;
+  margin-bottom: 10px;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+  text-align: center;
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 13px;
+  color: #999999;
+}
+
+h4,h2,h1 {
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+}
+
+p {
+  font-weight: 200;
+  color: #6b7280; 
+  font-family: "Inter", sans-serif;
+}
