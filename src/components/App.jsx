@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import Footer from './Footer.jsx'
+import NavigationBar from './NavigationBar.jsx'
 
 
 import Home1 from '../assets/Hero.png'
@@ -16,14 +17,13 @@ import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined'
 import Button from '@mui/material/Button'
 
 
-
 const App = () => {
   const navigate = useNavigate();
 
   return (
     <div>
       <div className={`container d-flex justify-content-center min-vh-100`} style={{position: 'relative', marginBottom: '100px'}}>
-        <img src={Home1} style={{borderRadius:'50px', width:'80rem', height:'45rem', marginTop:'30px'}}/>
+        <img src={Home1} style={{borderRadius:'50px', width:'80rem', height:'47rem', marginTop:'30px'}}/>
         <div style={{position: 'absolute', bottom: '140px', left: '70px'}}>
           <p className="text-white mb-2 mx-2 fs-6 fw-light" style={{maxWidth: '500px', fontFamily: '"Inter", sans-serif'}}>
             Modern Luxury Residence
@@ -117,8 +117,14 @@ const App = () => {
             <div className={`container d-flex justify-content-center h-100 align-items-center border-0`} style={{borderRadius: '50px', backgroundColor: '#ffff', maxWidth: '150px', 
               margin: '0 auto'}}>
             </div>
-            <h1 className={`text-center fontSize`}>The art of exceptional living.</h1>
-            <p className={`text-center`}>At YourNiwahana, every home is a masterpiece crafted with precision, defined by elegance by the way you live.</p>
+            <h2 className={`text-center fontSize`}>The art of exceptional living.</h2>
+            <p className={`container text-center`}>
+            At YourNiwahana, every home is a masterpiece thoughtfully crafted with precision, purpose, and passion. Each residence is defined
+            by timeless elegance, intelligent design, and refined details that seamlessly blend aesthetics with everyday comfort. From open, 
+            light-filled spaces to carefully curated finishes, every element is designed to enhance the way you live and feel within your home. 
+            At YourNiwahana, luxury goes beyond appearance it is a way of life, offering a harmonious balance of sophistication, warmth, and 
+            lasting value for those who seek more than just a home.
+            </p>
       </div>
 
 
@@ -189,8 +195,6 @@ const App = () => {
           </form>
         </div>
       </div>
-
-      <Footer />
     </div>
   )
 }
