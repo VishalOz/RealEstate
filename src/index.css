@@ -10,6 +10,7 @@ body {
   padding: 60px 20px 20px;
   margin-top: 80px;
   font-family: "Inter", sans-serif;
+  z-index: 100;
 }
 
 .footer .container {
@@ -60,3 +61,48 @@ p {
   color: #6b7280; 
   font-family: "Inter", sans-serif;
 }
+
+.floating-navbar {
+  font-family: "Inter", sans-serif;
+  position: fixed;
+  bottom: 120px;           
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(26, 25, 25, 0.7);
+  backdrop-filter: blur(12px);
+  padding: 6px 12px;
+  border-radius: 50px;
+  z-index: 10;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.nav-list li {
+  color: #cfcfcf;
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-list li:hover {
+  color: white;
+  background: rgba(255,255,255,0.1);
+}
+
+.nav-list li.active {
+  background: rgba(255,255,255,0.15);
+  color: white;
+}
+
+
+
