@@ -276,25 +276,35 @@ const Search = () => {
 
       <div className={`container`}>
         <div className={`row p-3 gap-2`}>
-          {/* Render a card for each property, injecting favourites panel next to the KANDY - HILL VIEW RESIDENCE card */}
-          {(hasSearched ? searchResults : properties).map((property) => (
-            <React.Fragment key={property.id}>
-              <div className={`col-12 col-sm-6 col-md-4`}>
-                {/* Wrap PropertyCard with a simple favourite toggle */}
-                <div className={`position-relative`}>
-                  <PropertyCard property={property} />
-                  <button
-                    aria-label={`Toggle favourite ${property.name || property.id}`}
-                    onClick={() => toggleFavourite(property.id)}
-                    className={`btn btn-sm btn-outline-warning position-absolute`}
-                    style={{ top: 8, right: 8 }}
-                  >
-                    {favourites.includes(property.id) ? '★' : '☆'}
-                  </button>
+          {/* Display message if search was performed but no results found */}
+          {hasSearched && searchResults && searchResults.length === 0 ? (
+            <div className={`col-12 text-center p-5`}>
+              <h3 style={{ color: '#1a1a2e', marginBottom: '10px' }}>No Properties Found</h3>
+              <p style={{ color: '#666', fontSize: '16px' }}>
+                We couldn't find any properties matching your search criteria. Please try adjusting your filters.
+              </p>
+            </div>
+          ) : (
+            /* Render a card for each property, injecting favourites panel next to the KANDY - HILL VIEW RESIDENCE card */
+            (hasSearched ? searchResults : properties).map((property) => (
+              <React.Fragment key={property.id}>
+                <div className={`col-12 col-sm-6 col-md-4`}>
+                  {/* Wrap PropertyCard with a simple favourite toggle */}
+                  <div className={`position-relative`}>
+                    <PropertyCard property={property} />
+                    <button
+                      aria-label={`Toggle favourite ${property.name || property.id}`}
+                      onClick={() => toggleFavourite(property.id)}
+                      className={`btn btn-sm btn-outline-warning position-absolute`}
+                      style={{ top: 8, right: 8 }}
+                    >
+                      {favourites.includes(property.id) ? '★' : '☆'}
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </React.Fragment>
-          ))}
+              </React.Fragment>
+            ))
+          )}
         </div>
       </div>
     </div>
