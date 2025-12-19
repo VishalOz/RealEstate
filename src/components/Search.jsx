@@ -29,7 +29,8 @@ const Search = () => {
     // Add your search logic here
   }
 
-  const firstProperty = data?.properties?.[0]
+  // Use all properties instead of only the first one
+  const properties = data?.properties ?? []
 
   return (
     <div>
@@ -206,9 +207,12 @@ const Search = () => {
 
       <div className={`container`}>
         <div className={`row p-3 gap-4`}>
-          <div className={`col-md-4 col-sm-3`}>
-            <PropertyCard property={firstProperty} />
-          </div>
+          {/* Render a card for each property */}
+          {properties.map((property) => (
+            <div key={property.id} className={`col-12 col-sm-6 col-md-4`}>
+              <PropertyCard property={property} />
+            </div>
+          ))}
         </div>
       </div>
     </div>
