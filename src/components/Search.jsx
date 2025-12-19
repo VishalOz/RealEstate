@@ -17,8 +17,9 @@ const Search = () => {
     postalCode: ''
   })
 
-  // Simple favourites state (IDs)
   const [favourites, setFavourites] = useState([])
+  const [searchResults, setSearchResults] = useState(null)
+  const [hasSearched, setHasSearched] = useState(false)
 
   const handleChange = (e) => {
     setFilters({
@@ -28,8 +29,66 @@ const Search = () => {
   }
 
   const handleSearch = () => {
-    console.log('Search filters:', filters)
-    // Add your search logic here
+    // Check if at least one filter is filled
+    const hasAnyFilter = Object.values(filters).some(value => value !== '')
+    
+    if (!hasAnyFilter) {
+      alert('Please fill in at least one search field')
+      return
+    }
+
+    // Filter properties based on the criteria
+    const filtered = properties.filter((property) => {
+      // Property Type filter
+      if (filters.propertyType) {
+        const typeMatch = property.type.toLowerCase() === filters.propertyType.toLowerCase()
+        if (!typeMatch) return false
+      }
+
+      // Min Price filter
+      if (filters.minPrice) {
+        if (property.price < parseInt(filters.minPrice)) return false
+      }
+
+      // Max Price filter
+      if (filters.maxPrice) {
+        if (property.price > parseInt(filters.maxPrice)) return false
+      }
+
+      // Min Bedrooms filter
+      if (filters.minBedrooms) {
+        if (property.bedrooms < parseInt(filters.minBedrooms)) return false
+      }
+
+      // Max Bedrooms filter
+      if (filters.maxBedrooms) {
+        if (property.bedrooms > parseInt(filters.maxBedrooms)) return false
+      }
+
+      // Postal Code filter
+      if (filters.postalCode) {
+        if (property.postalCode !== filters.postalCode) return false
+      }
+
+      // Date Added After filter
+      if (filters.dateAfter) {
+        const filterDate = new Date(filters.dateAfter)
+        const propertyDate = new Date(`${property.added.year}-${String(new Date(`${property.added.month} 1`).getMonth() + 1).padStart(2, '0')}-${String(property.added.day).padStart(2, '0')}`)
+        if (propertyDate < filterDate) return false
+      }
+
+      // Date Added Before filter
+      if (filters.dateBefore) {
+        const filterDate = new Date(filters.dateBefore)
+        const propertyDate = new Date(`${property.added.year}-${String(new Date(`${property.added.month} 1`).getMonth() + 1).padStart(2, '0')}-${String(property.added.day).padStart(2, '0')}`)
+        if (propertyDate > filterDate) return false
+      }
+
+      return true
+    })
+
+    setSearchResults(filtered)
+    setHasSearched(true)
   }
 
   // Use all properties instead of only the first one
@@ -218,7 +277,7 @@ const Search = () => {
       <div className={`container`}>
         <div className={`row p-3 gap-2`}>
           {/* Render a card for each property, injecting favourites panel next to the KANDY - HILL VIEW RESIDENCE card */}
-          {properties.map((property) => (
+          {(hasSearched ? searchResults : properties).map((property) => (
             <React.Fragment key={property.id}>
               <div className={`col-12 col-sm-6 col-md-4`}>
                 {/* Wrap PropertyCard with a simple favourite toggle */}
