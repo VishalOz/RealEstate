@@ -23,13 +23,12 @@ const PropertyCard = ({ property }) => {
         style={{ height: '200px', objectFit: 'cover' }}
       />
       <div className={`card-body`}>
-        <h5 className={`card-title`}>{property.name || 'Unnamed Property'}</h5>
-        <p className={`card-text mb-1`}>{property.location || 'Unknown location'}</p>
-        {property.price !== undefined && (
-          <p className={`card-text`}>
-            <strong>{property.currency ? property.currency + ' ' : ''}{property.price}</strong>
-          </p>
-        )}
+        <h5 className={`card-title`} style={{fontFamily: '"Inter", sans-serif'}}>{property.name}</h5>
+        <p className={`card-text mb-1`}>{property.type} : {property.bedrooms} bedrooms</p>
+        <p className={`card-text `}>{property.location}  ({property.postalCode})</p>
+        <p className={`card-text`}>
+            <strong>{property.currency} {property.price}</strong>
+        </p>
       </div>
     </div>
     
