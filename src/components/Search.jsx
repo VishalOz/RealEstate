@@ -234,54 +234,6 @@ const Search = () => {
                   </button>
                 </div>
               </div>
-
-              {/* Inject favourites section as a new column next to the KANDY - HILL VIEW RESIDENCE card */}
-              {property?.name === 'KANDY - HILL VIEW RESIDENCE' && (
-                <div className={`col-12 col-sm-6 col-md-4 d-flex flex-column gap-3 align-items-stretch`}>
-                  {/* Favourites list card */}
-                  <div className={`card shadow-sm`} style={{ minWidth: 0 }}>
-                    <div className={`card-body`}>
-                      <h5 className={`card-title`}>Favourites</h5>
-                      {favourites.length === 0 ? (
-                        <p className={`text-muted mb-0`}>No favourites yet.</p>
-                      ) : (
-                        <ul className={`list-group list-group-flush`}>
-                          {favourites.map((favId) => {
-                            const fav = properties.find((p) => p.id === favId)
-                            if (!fav) return null
-                            return (
-                              <li key={favId} className={`list-group-item d-flex justify-content-between align-items-center`}>
-                                <span>
-                                  {(fav.name || 'Property')}<br />
-                                  <small className={`text-muted`}>{fav.location || ''}</small>
-                                </span>
-                                <button
-                                  className={`btn btn-sm btn-outline-danger`}
-                                  onClick={() => toggleFavourite(favId)}
-                                >
-                                  Remove
-                                </button>
-                              </li>
-                            )
-                          })}
-                        </ul>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Bin card under favourites */}
-                  <div
-                    className={`card shadow-sm border-danger-subtle d-flex`}
-                    style={{ minHeight: '120px', minWidth: 0 }}
-                  >
-                    <div className={`card-body d-flex flex-column align-items-center justify-content-center text-center w-100`}>
-                      <div style={{ fontSize: '32px' }}>🗑️</div>
-                      <div className={`mt-2 fw-semibold`}>Drag here to remove from favourites</div>
-                      <small className={`text-muted`}>Drop favourite items onto the bin to remove</small>
-                    </div>
-                  </div>
-                </div>
-              )}
             </React.Fragment>
           ))}
         </div>
