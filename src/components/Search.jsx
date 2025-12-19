@@ -130,7 +130,7 @@ const Search = () => {
                     >
                       <MenuItem value="">All Types</MenuItem>
                       <MenuItem value="house">House</MenuItem>
-                      <MenuItem value="apartment">Flat</MenuItem>
+                      <MenuItem value="flat">Flat</MenuItem>
                     </TextField>
                   </Grid>
 
@@ -279,7 +279,7 @@ const Search = () => {
           {/* Display message if search was performed but no results found */}
           {hasSearched && searchResults && searchResults.length === 0 ? (
             <div className={`col-12 text-center p-5`}>
-              <h3 style={{ color: '#1a1a2e', marginBottom: '10px' }}>No Properties Found</h3>
+              <h3 style={{ color: '#1a1a2e', marginBottom: '10px', fontFamily: '"Inter", sans-serif'}}>No Properties Found</h3>
               <p style={{ color: '#666', fontSize: '16px' }}>
                 We couldn't find any properties matching your search criteria. Please try adjusting your filters.
               </p>
