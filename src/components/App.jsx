@@ -5,9 +5,9 @@ import Footer from './Footer.jsx'
 import NavigationBar from './NavigationBar.jsx'
 
 
-import Home1 from '../assets/Hero.png'
-import Home2 from '../assets/Home2.jpg'
-import Home4 from '../assets/light.png'
+import Home1 from '/images/Hero.png'
+import Home2 from '/images/Home2.jpg'
+import Home4 from '/images/light.png'
 
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined'
 import ApartmentOutlinedIcon from '@mui/icons-material/ApartmentOutlined'

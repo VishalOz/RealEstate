@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { TextField, MenuItem, Button, Grid } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 
+import PropertyCard from './PropertyCard.jsx'
+import data from '../data/properties.json'
+
 const Search = () => {
   const [filters, setFilters] = useState({
     propertyType: '',
@@ -26,12 +29,14 @@ const Search = () => {
     // Add your search logic here
   }
 
+  const firstProperty = data?.properties?.[0]
+
   return (
     <div>
       <div className={`container d-flex justify-content-center`}>
         <div className={`row p-3 gap-4`}>
           <div className={`col`}>
-            <h1>Discover homes designed to inspire.</h1>
+            <h1>Discover properties designed to inspire.</h1>
             <p className={`text-center`}>Luxury residences where design meets comfort</p>
           </div>
         </div>
@@ -51,14 +56,11 @@ const Search = () => {
                       name="propertyType"
                       value={filters.propertyType}
                       onChange={handleChange}
-                      variant="outlined"
+                      
                     >
                       <MenuItem value="">All Types</MenuItem>
                       <MenuItem value="house">House</MenuItem>
-                      <MenuItem value="apartment">Apartment</MenuItem>
-                      <MenuItem value="condo">Condo</MenuItem>
-                      <MenuItem value="villa">Villa</MenuItem>
-                      <MenuItem value="townhouse">Townhouse</MenuItem>
+                      <MenuItem value="apartment">Flat</MenuItem>
                     </TextField>
                   </Grid>
 
@@ -196,9 +198,18 @@ const Search = () => {
                     </Button>
                   </Grid>
                 </Grid>
+                
               </div>
             </div>
           </div>
+      </div>
+
+      <div className={`container`}>
+        <div className={`row p-3 gap-4`}>
+          <div className={`col-md-4 col-sm-3`}>
+            <PropertyCard property={firstProperty} />
+          </div>
+        </div>
       </div>
     </div>
   )
