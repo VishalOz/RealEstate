@@ -32,6 +32,7 @@ const PropertyCard = ({ property }) => {
         )}
       </div>
     </div>
+    
   )
 }
 

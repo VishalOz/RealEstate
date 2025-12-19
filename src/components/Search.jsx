@@ -17,6 +17,9 @@ const Search = () => {
     postalCode: ''
   })
 
+  // Simple favourites state (IDs)
+  const [favourites, setFavourites] = useState([])
+
   const handleChange = (e) => {
     setFilters({
       ...filters,
@@ -31,6 +34,13 @@ const Search = () => {
 
   // Use all properties instead of only the first one
   const properties = data?.properties ?? []
+
+  // Helper: toggle favourite by id
+  const toggleFavourite = (id) => {
+    setFavourites((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    )
+  }
 
   return (
     <div>
@@ -206,12 +216,25 @@ const Search = () => {
       </div>
 
       <div className={`container`}>
-        <div className={`row p-3 gap-4`}>
-          {/* Render a card for each property */}
+        <div className={`row p-3 gap-2`}>
+          {/* Render a card for each property, injecting favourites panel next to the KANDY - HILL VIEW RESIDENCE card */}
           {properties.map((property) => (
-            <div key={property.id} className={`col-12 col-sm-6 col-md-4`}>
-              <PropertyCard property={property} />
-            </div>
+            <React.Fragment key={property.id}>
+              <div className={`col-12 col-sm-6 col-md-4`}>
+                {/* Wrap PropertyCard with a simple favourite toggle */}
+                <div className={`position-relative`}>
+                  <PropertyCard property={property} />
+                  <button
+                    aria-label={`Toggle favourite ${property.name || property.id}`}
+                    onClick={() => toggleFavourite(property.id)}
+                    className={`btn btn-sm btn-outline-warning position-absolute`}
+                    style={{ top: 8, right: 8 }}
+                  >
+                    {favourites.includes(property.id) ? '★' : '☆'}
+                  </button>
+                </div>
+              </div>
+            </React.Fragment>
           ))}
         </div>
       </div>
