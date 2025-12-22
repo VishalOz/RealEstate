@@ -14,7 +14,7 @@ const PropertyCard = ({ property }) => {
   }
 
   return (
-    <div className={`card h-100 shadow-sm`}>
+    <div className={`card h-100 shadow-sm relative`}>
       <img
         src={pictureSrc}
         onError={handleImgError}
