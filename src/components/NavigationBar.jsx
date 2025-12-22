@@ -24,7 +24,7 @@ const NavigationBar = () => {
         if (!isOpen) {
           setIsVisible(false)
         }
-      }, 2000)
+      }, 1000)
     }
 
     // Show navbar on scroll or mouse movement
@@ -36,7 +36,7 @@ const NavigationBar = () => {
       if (!isOpen) {
         setIsVisible(false)
       }
-    }, 2000)
+    }, 1000)
 
     return () => {
       clearTimeout(timeoutId)
