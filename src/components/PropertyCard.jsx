@@ -1,24 +1,13 @@
 import React from 'react'
 
 const PropertyCard = ({ property }) => {
-  const pictureSrc = (() => {
-    const pic = property.picture || ''
-    if (!pic) return '/images/light.png'
-    if (pic.startsWith('http') || pic.startsWith('/')) return pic
-    return `/${pic}`
-  })()
-
-  const handleImgError = (e) => {
-    if (e.currentTarget.src.endsWith('/images/light.png')) return
-    e.currentTarget.src = '/images/light.png'
-  }
+  const pictureSrc = property.picture;
 
   return (
     <div className={`card h-100 shadow-sm relative`}>
       <img
         src={pictureSrc}
-        onError={handleImgError}
-        alt={property.name || 'Property image'}
+        alt={'Property image'}
         className={`card-img-top`}
         style={{ height: '200px', objectFit: 'cover' }}
       />
