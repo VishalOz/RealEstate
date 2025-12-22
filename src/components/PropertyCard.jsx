@@ -3,24 +3,25 @@ import React from 'react'
 const PropertyCard = ({ property }) => {
   const pictureSrc = property.picture;
 
+
   return (
-    <div className={`card h-100 shadow-sm relative`}>
+    <div className="property-card">
       <img
         src={pictureSrc}
         alt={'Property image'}
-        className={`card-img-top`}
-        style={{ height: '200px', objectFit: 'cover' }}
+        className="property-image"
       />
-      <div className={`card-body`}>
-        <h5 className={`card-title`} style={{fontFamily: '"Inter", sans-serif'}}>{property.name}</h5>
-        <p className={`card-text mb-1`}>{property.type} : {property.bedrooms} bedrooms</p>
-        <p className={`card-text `}>{property.location}  ({property.postalCode})</p>
-        <p className={`card-text`}>
-            <strong>{property.currency} {property.price}</strong>
-        </p>
+      <div className="property-overlay">
+        <div className="overlay-top">
+          <span className="overlay-location">{property.location}</span>
+          <span className="overlay-bedrooms">{property.bedrooms} Bedroom</span>
+        </div>
+        <div className="overlay-bottom">
+          <span className="overlay-name">{property.name}</span>
+          <span className="overlay-price">{property.currency} {property.price}</span>
+        </div>
       </div>
     </div>
-    
   )
 }
 

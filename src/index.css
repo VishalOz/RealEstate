@@ -155,6 +155,173 @@ p {
   transform: rotate(-45deg) translate(4px, -4px);
 }
 
+/* Property Card Styles */
+.property-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  min-height: 250px;
+  margin-bottom: 25px;
+}
+
+.property-image {
+  width: 100%;
+  height: 100%;
+  min-height: 250px;
+  object-fit: cover;
+  display: block;
+}
+
+.property-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.1) 30%,
+    rgba(0, 0, 0, 0.1) 70%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  pointer-events: none;
+}
+
+.overlay-top,
+.overlay-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.overlay-bottom {
+  align-items: flex-end;
+  background: rgba(0, 0, 0, 0.3);
+  margin: -15px;
+  margin-top: 0;
+  padding: 15px;
+}
+
+.overlay-location,
+.overlay-bedrooms,
+.overlay-name,
+.overlay-price {
+  color: #ffffff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  font-family: "Inter", sans-serif;
+}
+
+.overlay-location {
+  font-size: 0.85rem;
+  font-weight: 400;
+  padding: 5px 10px;
+  border-radius: 20px;
+  max-width: 60%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.overlay-bedrooms {
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: black;
+  background: rgba(255, 255, 255, 1);
+  padding: 5px 15px;
+  border-radius: 20px;
+}
+
+.overlay-name {
+  font-size: 0.7rem;
+  font-weight: 600;
+  max-width: 65%;
+  line-height: 1.3;
+  word-wrap: break-word;
+}
+
+.overlay-price {
+  font-size: 0.9rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Responsive styles for property card */
+@media (max-width: 992px) {
+  .property-card {
+    min-height: 220px;
+  }
+  
+  .property-image {
+    min-height: 220px;
+  }
+  
+  .property-overlay {
+    padding: 12px;
+  }
+  
+  .overlay-location {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+  }
+  
+  .overlay-bedrooms {
+    font-size: 0.8rem;
+    padding: 4px 10px;
+  }
+  
+  .overlay-name {
+    font-size: 0.9rem;
+  }
+  
+  .overlay-price {
+    font-size: 1rem;
+    padding: 5px 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .property-card {
+    min-height: 200px;
+  }
+  
+  .property-image {
+    min-height: 200px;
+  }
+  
+  .property-overlay {
+    padding: 10px;
+  }
+  
+  .overlay-location {
+    font-size: 0.75rem;
+    padding: 3px 7px;
+    max-width: 55%;
+  }
+  
+  .overlay-bedrooms {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+  }
+  
+  .overlay-name {
+    font-size: 0.8rem;
+    max-width: 60%;
+  }
+  
+  .overlay-price {
+    font-size: 0.85rem;
+    padding: 4px 8px;
+  }
+}
+
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
   .floating-navbar {
