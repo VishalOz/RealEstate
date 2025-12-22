@@ -163,6 +163,7 @@ p {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   height: 100%;
   min-height: 250px;
+  margin-bottom: 25px;
 }
 
 .property-image {

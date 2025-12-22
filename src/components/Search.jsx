@@ -275,7 +275,7 @@ const Search = () => {
       </div>
 
       <div className={`container`}>
-        <div className={`row p-3 gap-2`}>
+        <div className={`row p-3 g-3`}>
           {/* Display message if search was performed but no results found */}
           {hasSearched && searchResults && searchResults.length === 0 ? (
             <div className={`col-12 text-center p-5`}>
@@ -285,25 +285,82 @@ const Search = () => {
               </p>
             </div>
           ) : (
-            /* Render a card for each property, injecting favourites panel next to the KANDY - HILL VIEW RESIDENCE card */
-            (hasSearched ? searchResults : properties).map((property) => (
-              <React.Fragment key={property.id}>
-                <div className={`col-12 col-sm-6 col-md-4`}>
-                  {/* Wrap PropertyCard with a simple favourite toggle */}
-                  <div className={`position-relative`}>
-                    <PropertyCard property={property} />
-                    <button
-                      aria-label={`Toggle favourite ${property.name || property.id}`}
-                      onClick={() => toggleFavourite(property.id)}
-                      className={`btn btn-sm btn-outline-warning position-absolute`}
-                      style={{ top: 8, right: 8 }}
-                    >
-                      {favourites.includes(property.id) ? '★' : '☆'}
-                    </button>
+            <>
+              {/* Left side - Property Cards (2 columns) */}
+              <div className="col-12 col-md-8">
+                <div className="row g-3">
+                  {(hasSearched ? searchResults : properties).map((property) => (
+                    <div key={property.id} className="col-12 col-sm-6">
+                      <div className="position-relative">
+                        <PropertyCard property={property} />
+                        <button
+                          aria-label={`Toggle favourite ${property.name || property.id}`}
+                          onClick={() => toggleFavourite(property.id)}
+                          className="btn btn-sm btn-outline-warning position-absolute"
+                          style={{ top: 8, right: 8 }}
+                        >
+                          {favourites.includes(property.id) ? '★' : '☆'}
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right side - Favourites Column (3rd column) */}
+              <div className="col-12 col-md-4">
+                <div className="row g-3">
+                  {/* Favourites Panel */}
+                  <div className="col-12">
+                    <div className="card shadow-sm p-3" style={{ borderRadius: '20px' }}>
+                      <h5 style={{ fontFamily: '"Inter", sans-serif' }}>Favourites</h5>
+                      {favourites.length === 0 ? (
+                        <p style={{ color: '#666', fontSize: '14px' }}>No favourites added yet.</p>
+                      ) : (
+                        <ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
+                          {favourites.map((favId) => {
+                            const favProperty = properties.find((prop) => prop.id === favId)
+                            return (
+                              <li key={favId} style={{ marginBottom: '10px' }}>
+                                {favProperty ? favProperty.name : 'Unknown Property'}
+                              </li>
+                            )
+                          })}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Remove from Favourites Panel */}
+                  <div className="col-12">
+                    <div className="card shadow-sm p-3" style={{ borderRadius: '20px' }}>
+                      <h5 style={{ fontFamily: '"Inter", sans-serif' }}>Remove from Favourites</h5>
+                      {favourites.length === 0 ? (
+                        <p style={{ color: '#666', fontSize: '14px' }}>No favourites to remove.</p>
+                      ) : (
+                        <ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
+                          {favourites.map((favId) => {
+                            const favProperty = properties.find((prop) => prop.id === favId)
+                            return (
+                              <li key={favId} style={{ marginBottom: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <span style={{ fontSize: '14px' }}>{favProperty ? favProperty.name : 'Unknown Property'}</span>
+                                <button
+                                  onClick={() => toggleFavourite(favId)}
+                                  className="btn btn-sm btn-outline-danger"
+                                  style={{ padding: '2px 8px', fontSize: '12px' }}
+                                >
+                                  Remove
+                                </button>
+                              </li>
+                            )
+                          })}
+                        </ul>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </React.Fragment>
-            ))
+              </div>
+            </>
           )}
         </div>
       </div>
