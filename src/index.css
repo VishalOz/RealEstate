@@ -74,6 +74,15 @@ p {
   border-radius: 50px;
   z-index: 10;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
+  opacity: 1;
+  visibility: visible;
+}
+
+.floating-navbar.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(20px);
 }
 
 .nav-list {

@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 
 const NavigationBar = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
@@ -12,8 +13,40 @@ const NavigationBar = () => {
     setIsOpen(false)
   }
 
+  useEffect(() => {
+    let timeoutId
+
+    const showNavbar = () => {
+      setIsVisible(true)
+      clearTimeout(timeoutId)
+      timeoutId = setTimeout(() => {
+        // Only hide if the menu is not open
+        if (!isOpen) {
+          setIsVisible(false)
+        }
+      }, 2000)
+    }
+
+    // Show navbar on scroll or mouse movement
+    window.addEventListener('scroll', showNavbar)
+    window.addEventListener('mousemove', showNavbar)
+
+    // Initial timeout to hide navbar
+    timeoutId = setTimeout(() => {
+      if (!isOpen) {
+        setIsVisible(false)
+      }
+    }, 2000)
+
+    return () => {
+      clearTimeout(timeoutId)
+      window.removeEventListener('scroll', showNavbar)
+      window.removeEventListener('mousemove', showNavbar)
+    }
+  }, [isOpen])
+
   return (
-    <nav className={`floating-navbar ${isOpen ? 'open' : ''}`}>
+    <nav className={`floating-navbar ${isOpen ? 'open' : ''} ${!isVisible ? 'hidden' : ''}`}>
       <button className="hamburger" onClick={toggleMenu} aria-label="Toggle menu">
         <span className={`bar ${isOpen ? 'open' : ''}`}></span>
         <span className={`bar ${isOpen ? 'open' : ''}`}></span>
