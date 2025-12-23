@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { TextField, MenuItem, Button, Grid } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
+import DeleteIcon from '@mui/icons-material/Delete'
 
 import PropertyCard from './PropertyCard.jsx'
 import data from '../data/properties.json'
@@ -371,7 +372,7 @@ const Search = () => {
                       style={{ 
                         borderRadius: '20px',
                         backgroundColor: draggedItem ? '#f8f9fa' : 'white',
-                        border: draggedItem ? '2px dashed #dc3545' : '1px solid #dee2e6',
+                        border: draggedItem ? '2px dashed rgb(184, 184, 184)' : '1px dashed rgb(202, 202, 202)',
                         transition: 'all 0.2s ease',
                         minHeight: '150px',
                         display: 'flex',
@@ -382,9 +383,10 @@ const Search = () => {
                       onDragOver={handleDragOver}
                       onDrop={handleDropOnRemove}
                     >
-                      <h5 style={{ fontFamily: '"Inter", sans-serif', marginBottom: '10px' }}>Remove from Favourites</h5>
-                      <p style={{ color: '#999', fontSize: '12px', fontStyle: 'italic', textAlign: 'center', margin: 0 }}>
-                        {draggedItem ? '🎯 Drop here to remove from favourites' : 'Drag properties here to remove'}
+                      <DeleteIcon style={{ fontSize: '48px', color: 'rgb(184, 184, 184)', marginBottom: '10px' }} />
+                      
+                      <p style={{ color: 'rgb(184, 184, 184)', fontSize: '12px', fontStyle: 'italic', textAlign: 'center', margin: 0 }}>
+                        {draggedItem ? 'Drop here to remove from favourites' : 'Drag properties here to remove'}
                       </p>
                     </div>
                   </div>
