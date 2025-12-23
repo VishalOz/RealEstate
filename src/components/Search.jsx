@@ -331,35 +331,34 @@ const Search = () => {
                       {favourites.length === 0 ? (
                         <p style={{ color: '#666', fontSize: '14px' }}>No favourites added yet.</p>
                       ) : (
-                        <ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
+                        <div className="row g-3">
                           {favourites.map((favId) => {
                             const favProperty = properties.find((prop) => prop.id === favId)
                             return (
-                              <li 
+                              <div 
                                 key={favId} 
-                                style={{ marginBottom: '10px', cursor: 'move' }}
+                                className="col-12"
                                 draggable
                                 onDragStart={(e) => handleDragStart(e, favId)}
+                                style={{
+                                  opacity: draggedItem === favId ? 0.5 : 1,
+                                  transition: 'opacity 0.2s ease',
+                                  cursor: 'move'
+                                }}
                               >
                                 {favProperty ? (
-                                  <img 
-                                    src={favProperty.picture} 
-                                    alt={favProperty.name}
-                                    style={{ 
-                                      width: '100%', 
-                                      height: '80px', 
-                                      objectFit: 'cover', 
-                                      borderRadius: '10px',
-                                      opacity: draggedItem === favId ? 0.5 : 1,
-                                      transition: 'opacity 0.2s ease'
-                                    }}
-                                    draggable={false}
+                                  <PropertyCard 
+                                    property={favProperty} 
+                                    isFavourite={favourites.includes(favProperty.id)}
+                                    onToggleFavourite={toggleFavourite}
                                   />
-                                ) : 'Unknown Property'}
-                              </li>
+                                ) : (
+                                  <p>Unknown Property</p>
+                                )}
+                              </div>
                             )
                           })}
-                        </ul>
+                        </div>
                       )}
                     </div>
                   </div>
