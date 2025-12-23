@@ -20,6 +20,7 @@ const Search = () => {
   const [favourites, setFavourites] = useState([])
   const [searchResults, setSearchResults] = useState(null)
   const [hasSearched, setHasSearched] = useState(false)
+  const [draggedItem, setDraggedItem] = useState(null)
 
   const handleChange = (e) => {
     setFilters({
@@ -99,6 +100,24 @@ const Search = () => {
     setFavourites((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
     )
+  }
+
+  const handleDragStart = (e, favId) => {
+    setDraggedItem(favId)
+    e.dataTransfer.effectAllowed = 'move'
+  }
+
+  const handleDragOver = (e) => {
+    e.preventDefault()
+    e.dataTransfer.dropEffect = 'move'
+  }
+
+  const handleDropOnRemove = (e) => {
+    e.preventDefault()
+    if (draggedItem) {
+      toggleFavourite(draggedItem)
+      setDraggedItem(null)
+    }
   }
 
   return (
@@ -291,17 +310,11 @@ const Search = () => {
                 <div className="row g-3">
                   {(hasSearched ? searchResults : properties).map((property) => (
                     <div key={property.id} className="col-12 col-sm-6">
-                      <div className="position-relative">
-                        <PropertyCard property={property} />
-                        <button
-                          aria-label={`Toggle favourite ${property.name || property.id}`}
-                          onClick={() => toggleFavourite(property.id)}
-                          className="btn btn-sm btn-outline-warning position-absolute"
-                          style={{ top: 8, right: 8 }}
-                        >
-                          {favourites.includes(property.id) ? '★' : '☆'}
-                        </button>
-                      </div>
+                      <PropertyCard 
+                        property={property} 
+                        isFavourite={favourites.includes(property.id)}
+                        onToggleFavourite={toggleFavourite}
+                      />
                     </div>
                   ))}
                 </div>
@@ -321,8 +334,27 @@ const Search = () => {
                           {favourites.map((favId) => {
                             const favProperty = properties.find((prop) => prop.id === favId)
                             return (
-                              <li key={favId} style={{ marginBottom: '10px' }}>
-                                {favProperty ? favProperty.name : 'Unknown Property'}
+                              <li 
+                                key={favId} 
+                                style={{ marginBottom: '10px', cursor: 'move' }}
+                                draggable
+                                onDragStart={(e) => handleDragStart(e, favId)}
+                              >
+                                {favProperty ? (
+                                  <img 
+                                    src={favProperty.picture} 
+                                    alt={favProperty.name}
+                                    style={{ 
+                                      width: '100%', 
+                                      height: '80px', 
+                                      objectFit: 'cover', 
+                                      borderRadius: '10px',
+                                      opacity: draggedItem === favId ? 0.5 : 1,
+                                      transition: 'opacity 0.2s ease'
+                                    }}
+                                    draggable={false}
+                                  />
+                                ) : 'Unknown Property'}
                               </li>
                             )
                           })}
@@ -332,30 +364,28 @@ const Search = () => {
                   </div>
 
                   {/* Remove from Favourites Panel */}
-                  <div className="col-12">
-                    <div className="card shadow-sm p-3" style={{ borderRadius: '20px' }}>
-                      <h5 style={{ fontFamily: '"Inter", sans-serif' }}>Remove from Favourites</h5>
-                      {favourites.length === 0 ? (
-                        <p style={{ color: '#666', fontSize: '14px' }}>No favourites to remove.</p>
-                      ) : (
-                        <ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
-                          {favourites.map((favId) => {
-                            const favProperty = properties.find((prop) => prop.id === favId)
-                            return (
-                              <li key={favId} style={{ marginBottom: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <span style={{ fontSize: '14px' }}>{favProperty ? favProperty.name : 'Unknown Property'}</span>
-                                <button
-                                  onClick={() => toggleFavourite(favId)}
-                                  className="btn btn-sm btn-outline-danger"
-                                  style={{ padding: '2px 8px', fontSize: '12px' }}
-                                >
-                                  Remove
-                                </button>
-                              </li>
-                            )
-                          })}
-                        </ul>
-                      )}
+                  <div 
+                    className="col-12">
+                    <div 
+                      className="card shadow-sm p-3" 
+                      style={{ 
+                        borderRadius: '20px',
+                        backgroundColor: draggedItem ? '#f8f9fa' : 'white',
+                        border: draggedItem ? '2px dashed #dc3545' : '1px solid #dee2e6',
+                        transition: 'all 0.2s ease',
+                        minHeight: '150px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                      }}
+                      onDragOver={handleDragOver}
+                      onDrop={handleDropOnRemove}
+                    >
+                      <h5 style={{ fontFamily: '"Inter", sans-serif', marginBottom: '10px' }}>Remove from Favourites</h5>
+                      <p style={{ color: '#999', fontSize: '12px', fontStyle: 'italic', textAlign: 'center', margin: 0 }}>
+                        {draggedItem ? '🎯 Drop here to remove from favourites' : 'Drag properties here to remove'}
+                      </p>
                     </div>
                   </div>
                 </div>
