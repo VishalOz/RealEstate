@@ -6,6 +6,12 @@ import NavigationBar from './NavigationBar.jsx'
 
 
 import Home1 from '/images/Hero.png'
+import ho1 from '/images/ho1.jpg'
+import ho3 from '/images/ho3.jpg'
+import ho4 from '/images/ho4.jpg'
+import ho5 from '/images/ho5.jpg'
+import ho2 from '/images/ho2.jpg'
+import light from '/images/light.png'
 
 
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined'
@@ -90,23 +96,23 @@ const App = () => {
       <div className={`container d-flex justify-content-center`} style={{position: 'relative', marginTop: '50px', marginBottom: '100px'}}>
         <div className={`row p-3 g-4`}>
           <div className={`col-md-6 col-sm-6`}>
-            <div className={`card p-3 shadow-md border-0`} style={{borderRadius: '20px'}}>
-              <img src={Home1} alt="" className={`img-fluid`}/>
+            <div className={`card shadow-md border-0`} style={{backgroundColor: 'rgba(0, 0, 0, 0.3)'}}>
+              <img src={ho3} alt="" className={``} style={{borderRadius: '50px'}}/>
             </div>
           </div>
           <div className={`col-md-6 col-sm-6`}>
-            <div className={`card p-3 shadow-md border-0`} style={{borderRadius: '20px'}}>
-             <img src={Home1} alt="" className={``} />
+            <div className={`card shadow-md border-0`} style={{backgroundColor: 'rgba(0, 0, 0, 0.3)'}}>
+             <img src={ho1} alt="" className={``} style={{borderRadius: '50px'}}/>
             </div>
           </div>
           <div className={`col-md-6 col-sm-6`}>
-            <div className={`card p-3 shadow-md border-0`} style={{borderRadius: '20px'}}>
-              <img src={Home1} alt="" className={``} />
+            <div className={`card shadow-md border-0`} style={{backgroundColor: 'rgba(0, 0, 0, 0.3)'}}>
+              <img src={ho4} alt="" className={``} style={{borderRadius: '50px'}}/>
             </div>
           </div>
           <div className={`col-md-6 col-sm-6`}>
-            <div className={`card p-3 shadow-md border-0`} style={{borderRadius: '20px'}}>
-              <img src={Home1} alt="" className={``} />
+            <div className={`card shadow-md border-0`} style={{backgroundColor: 'rgba(0, 0, 0, 0.3)', borderRadius: '50px'}}>
+              <img src={ho5} alt="" className={``} style={{borderRadius: '50px'}}/>
             </div>
           </div>
         </div>
