@@ -1,15 +1,74 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const PropertyCard = ({ property, isFavourite, onToggleFavourite }) => {
+  const [isHovering, setIsHovering] = useState(false);
+  const navigate = useNavigate();
   const pictureSrc = property.picture;
 
+  const handleCardHover = (hovering) => {
+    setIsHovering(hovering);
+  };
+
+  const handleArrowClick = (e) => {
+    e.stopPropagation();
+    navigate(`/property/${property.id}`);
+  };
+
   return (
-    <div className="property-card">
+    <div 
+      className="property-card"
+      onMouseEnter={() => handleCardHover(true)}
+      onMouseLeave={() => handleCardHover(false)}
+      style={{ cursor: 'pointer' }}
+    >
       <img
         src={pictureSrc}
         alt={'Property image'}
         className="property-image"
+        styles={{  }}
       />
+      {/* Arrow button that appears on hover */}
+      {isHovering && (
+        <button
+          onClick={handleArrowClick}
+          aria-label="View property details"
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            background: 'rgba(255, 255, 255, 0.9)',
+            border: 'none',
+            borderRadius: '50%',
+            width: '50px',
+            height: '50px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            zIndex: 10,
+            transition: 'all 0.3s ease',
+            boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
+            pointerEvents: 'auto',
+            animation: 'fadeIn 0.3s ease'
+          }}
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            style={{ color: '#000' }}
+          >
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      )}
       <div className="property-overlay">
         <div className="overlay-top">
           <span className="overlay-location">{property.location}</span>
