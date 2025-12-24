@@ -1,9 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import Footer from './Footer.jsx'
-import NavigationBar from './NavigationBar.jsx'
-
 
 import Home1 from '/images/Hero.png'
 import ho1 from '/images/ho1.jpg'
