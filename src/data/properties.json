@@ -11,7 +11,7 @@
 			"description":"Attractive three bedroom semi-detached family home situated within 1km of Kandana railway station with fast trains to Colombo and within easy walking distance of local shops, schools, bus routes and National Trust woodland. The property comprises; two receptions, fitted 18'9 x 10'1 kitchen/breakfast room and conservatory. The property also benefits from having a utility room and cloakroom. To the first floor there are three bedrooms and a family bathroom with separate WC. Additional features include double glazing, gas central heating and a well presented interior...",
 			"location":"Kandana, Sri Lanka",
 			"picture":"/images/ho3.jpg",
-            "coordinates": {"lat": 6.9061, "lng": 79.9696},
+            "coordinates": {"lat": 7.04, "lng": 79.88},
             "postalCode": "10115",
 			"url":"properties/prop1.html",
             "added": {
@@ -40,7 +40,12 @@
             "coordinates": {"lat": 7.2906, "lng": 80.6337},
             "postalCode":"20000",
             "url":"properties/prop3.html",
-            "added": {"month":"November", "day":3, "year":2022}
+            "added": {"month":"November", "day":3, "year":2022},
+            "gallery":[
+                "/images/ho3.jpg",
+                "/images/ho4.jpg",
+                "/images/ho3.jpg"
+            ]
         },
         {
             "id":"prop3",
@@ -56,7 +61,12 @@
             "coordinates": {"lat": 6.0535, "lng": 80.2210},
             "postalCode":"80000",
             "url":"properties/prop4.html",
-            "added": {"month":"August", "day":22, "year":2023}
+            "added": {"month":"August", "day":22, "year":2023},
+            "gallery":[
+                "/images/ho3.jpg",
+                "/images/ho4.jpg",
+                "/images/ho3.jpg"
+            ]
         },
         {
             "id":"prop4",
@@ -69,10 +79,15 @@
             "description":"Modern two-bedroom apartment with open-plan living, balcony views, and secure parking. Convenient access to business hubs, shopping and transport.",
             "location":"Colombo 01, Sri Lanka",
             "picture":"/images/ao3.jpg",
-            "coordinates": {"lat": 6.9271, "lng": 79.8612},
+            "coordinates": {"lat": 6.0329, "lng": 79.8612},
             "postalCode":"00100",
             "url":"properties/prop5.html",
-            "added": {"month":"January", "day":15, "year":2024}
+            "added": {"month":"January", "day":15, "year":2024},
+            "gallery":[
+                "/images/ho3.jpg",
+                "/images/ho4.jpg",
+                "/images/ho3.jpg"
+            ]
         },
         {
             "id":"prop5",
@@ -88,7 +103,12 @@
             "coordinates": {"lat": 7.4675, "lng": 80.6234},
             "postalCode":"21000",
             "url":"properties/prop6.html",
-            "added": {"month":"March", "day":5, "year":2023}
+            "added": {"month":"March", "day":5, "year":2023},
+            "gallery":[
+                "/images/ho3.jpg",
+                "/images/ho4.jpg",
+                "/images/ho3.jpg"
+            ]
         },
         {
             "id":"prop6",
@@ -101,10 +121,15 @@
             "description":"Well-presented four-bedroom residence featuring dual living areas, large kitchen, and shaded courtyard. Easy reach of local shops, schools and transport.",
             "location":"Thalawathugoda, Sri Lanka",
             "picture":"/images/ao4.jpg",
-            "coordinates": {"lat": 9.6615, "lng": 80.0255},
+            "coordinates": {"lat": 6.8759, "lng": 79.9392},
             "postalCode":"22000",
             "url":"properties/prop7.html",
-            "added": {"month":"May", "day":30, "year":2024}
+            "added": {"month":"May", "day":30, "year":2024},
+            "gallery":[
+                "/images/ho3.jpg",
+                "/images/ho4.jpg",
+                "/images/ho3.jpg"
+            ]
         },
         {
             "id":"prop7",
@@ -117,10 +142,15 @@
             "description":"Well-presented four-bedroom residence featuring dual living areas, large kitchen, and shaded courtyard. Easy reach of local shops, schools and transport.",
             "location":"Jaffna, Sri Lanka",
             "picture":"/images/ho5.jpg",
-            "coordinates": {"lat": 9.6615, "lng": 80.0255},
+            "coordinates": {"lat": 9.6606, "lng": 80.0117},
             "postalCode":"40000",
             "url":"properties/prop7.html",
-            "added": {"month":"May", "day":30, "year":2024}
+            "added": {"month":"May", "day":30, "year":2024},
+            "gallery":[
+                "/images/ho3.jpg",
+                "/images/ho4.jpg",
+                "/images/ho3.jpg"
+            ]
         },
         {
             "id":"prop8",
@@ -133,9 +163,14 @@
             "description":"Well-presented four-bedroom residence featuring dual living areas, large kitchen, and shaded courtyard. Easy reach of local shops, schools and transport.",
             "location":"MARADANA, Sri Lanka",
             "picture":"/images/ao5.jpg",
-            "coordinates": {"lat": 9.6615, "lng": 80.0255},
+            "coordinates": {"lat": 6.9270, "lng": 79.8640},
             "postalCode":"35000",
             "url":"properties/prop7.html",
-            "added": {"month":"May", "day":30, "year":2024}
+            "added": {"month":"May", "day":30, "year":2024},
+            "gallery":[
+                "/images/ho3.jpg",
+                "/images/ho4.jpg",
+                "/images/ho3.jpg"
+            ]
         }
 ]}
