@@ -134,161 +134,155 @@ const Search = () => {
 
       <div className={`container p-3 gap-4`}>
           <div className={`card p-3 shadow-md border-0`}>
-            <div className={`row p-3 gap-4`}>
-              <div className={`col-md-12`}>
-                <Grid container spacing={3}>
-                  {/* Property Type */}
-                  <Grid item xs={12} sm={6} md={4}>
-                    <TextField
-                      select
-                      fullWidth
-                      label="Property Type"
-                      name="propertyType"
-                      value={filters.propertyType}
-                      onChange={handleChange}
-                      
-                    >
-                      <MenuItem value="">All Types</MenuItem>
-                      <MenuItem value="house">House</MenuItem>
-                      <MenuItem value="flat">Flat</MenuItem>
-                    </TextField>
-                  </Grid>
+            <div className={`row g-3`}>
+              <div className={`col-12 col-sm-6 col-md-4 col-lg-3`}>
+                {/* Property Type */}              
+                <TextField
+                  select
+                  fullWidth
+                  label="Property Type"
+                  name="propertyType"
+                  value={filters.propertyType}
+                  onChange={handleChange}
+                >
+                  <MenuItem value="">All Types</MenuItem>
+                  <MenuItem value="house">House</MenuItem>
+                  <MenuItem value="flat">Flat</MenuItem>
+                </TextField>
+              </div>
 
-                  {/* Min Price */}
-                  <Grid item xs={12} sm={6} md={4}>
-                    <TextField
-                      fullWidth
-                      label="Min Price"
-                      name="minPrice"
-                      type="number"
-                      value={filters.minPrice}
-                      onChange={handleChange}
-                      variant="outlined"
-                      placeholder="$0"
-                    />
-                  </Grid>
+              <div className={`col-12 col-sm-6 col-md-4 col-lg-3`}>
+                {/* Min Price */}                
+                <TextField
+                  fullWidth
+                  label="Min Price"
+                  name="minPrice"
+                  type="number"
+                  value={filters.minPrice}
+                  onChange={handleChange}
+                  variant="outlined"
+                  placeholder="$0"
+                />
+              </div>
 
-                  {/* Max Price */}
-                  <Grid item xs={12} sm={6} md={4}>
-                    <TextField
-                      fullWidth
-                      label="Max Price"
-                      name="maxPrice"
-                      type="number"
-                      value={filters.maxPrice}
-                      onChange={handleChange}
-                      variant="outlined"
-                      placeholder="$1,000,000"
-                    />
-                  </Grid>
+              <div className={`col-12 col-sm-6 col-md-4 col-lg-3`}>
+                {/* Max Price */}               
+                <TextField
+                  fullWidth
+                  label="Max Price"
+                  name="maxPrice"
+                  type="number"
+                  value={filters.maxPrice}
+                  onChange={handleChange}
+                  variant="outlined"
+                  placeholder="$1,000,000"
+                />
+              </div>
 
-                  {/* Min Bedrooms */}
-                  <Grid item xs={12} sm={6} md={4}>
-                    <TextField
-                      fullWidth
-                      label="Min Bedrooms"
-                      name="minBedrooms"
-                      type="number"
-                      value={filters.minBedrooms}
-                      onChange={handleChange}
-                      variant="outlined"
-                      placeholder="1"
-                    />
-                  </Grid>
+              <div className={`col-12 col-sm-6 col-md-4 col-lg-3`}>
+                {/* Min Bedrooms */}        
+                <TextField
+                  fullWidth
+                  label="Min Bedrooms"
+                  name="minBedrooms"
+                  type="number"
+                  value={filters.minBedrooms}
+                  onChange={handleChange}
+                  variant="outlined"
+                  placeholder="1"
+                />
+              </div>
 
-                  {/* Max Bedrooms */}
-                  <Grid item xs={12} sm={6} md={4}>
-                    <TextField
-                      fullWidth
-                      label="Max Bedrooms"
-                      name="maxBedrooms"
-                      type="number"
-                      value={filters.maxBedrooms}
-                      onChange={handleChange}
-                      variant="outlined"
-                      placeholder="5+"
-                    />
-                  </Grid>
+              <div className={`col-12 col-sm-6 col-md-4 col-lg-3`}>
+                {/* Max Bedrooms */}           
+                <TextField
+                  fullWidth
+                  label="Max Bedrooms"
+                  name="maxBedrooms"
+                  type="number"
+                  value={filters.maxBedrooms}
+                  onChange={handleChange}
+                  variant="outlined"
+                  placeholder="5+"
+                />
+              </div>
 
-                  {/* Date Added After */}
-                  <Grid item xs={12} sm={6} md={4}>
-                    <TextField
-                      fullWidth
-                      label="Date Added After"
-                      name="dateAfter"
-                      type="date"
-                      value={filters.dateAfter}
-                      onChange={handleChange}
-                      variant="outlined"
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
-                  </Grid>
+              <div className={`col-12 col-sm-6 col-md-4 col-lg-3`}>
+                {/* Date Added After */}        
+                <TextField
+                  fullWidth
+                  label="Date Added After"
+                  name="dateAfter"
+                  type="date"
+                  value={filters.dateAfter}
+                  onChange={handleChange}
+                  variant="outlined"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </div>
 
-                  {/* Date Added Before */}
-                  <Grid item xs={12} sm={6} md={4}>
-                    <TextField
-                      fullWidth
-                      label="Date Added Before"
-                      name="dateBefore"
-                      type="date"
-                      value={filters.dateBefore}
-                      onChange={handleChange}
-                      variant="outlined"
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
-                  </Grid>
+              <div className={`col-12 col-sm-6 col-md-4 col-lg-3`}>
+                {/* Date Added Before */}   
+                <TextField
+                  fullWidth
+                  label="Date Added Before"
+                  name="dateBefore"
+                  type="date"
+                  value={filters.dateBefore}
+                  onChange={handleChange}
+                  variant="outlined"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </div>
 
-                  {/* Postal Code */}
-                  <Grid item xs={12} sm={6} md={4}>
-                    <TextField
-                      fullWidth
-                      label="Postal Code"
-                      name="postalCode"
-                      value={filters.postalCode}
-                      onChange={handleChange}
-                      variant="outlined"
-                      placeholder="Enter postal code"
-                    />
-                  </Grid>
+              <div className={`col-12 col-sm-6 col-md-4 col-lg-3`}>
+                {/* Postal Code */}    
+                <TextField
+                  fullWidth
+                  label="Postal Code"
+                  name="postalCode"
+                  value={filters.postalCode}
+                  onChange={handleChange}
+                  variant="outlined"
+                  placeholder="Enter postal code"
+                />
+              </div>
 
-                  {/* Search Button */}
-                  <Grid item xs={12} style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-                    <Button
-                      variant="contained"
-                      size="large"
-                      startIcon={<SearchIcon />}
-                      onClick={handleSearch}
-                      style={{
-                        backgroundColor: '#1a1a2e',
-                        color: '#ffffff',
-                        padding: '12px 48px',
-                        borderRadius: '999px',
-                        textTransform: 'none',
-                        fontSize: '16px',
-                        fontWeight: '600',
-                        boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                        transition: 'all 0.3s ease'
-                      }}
-                      onMouseOver={(e) => {
-                        e.currentTarget.style.backgroundColor = '#ffd700'
-                        e.currentTarget.style.color = '#1a1a2e'
-                        e.currentTarget.style.transform = 'translateY(-2px)'
-                      }}
-                      onMouseOut={(e) => {
-                        e.currentTarget.style.backgroundColor = '#1a1a2e'
-                        e.currentTarget.style.color = '#ffffff'
-                        e.currentTarget.style.transform = 'translateY(0)'
-                      }}
-                    >
-                      Search Properties
-                    </Button>
-                  </Grid>
-                </Grid>
-                
+              <div className={`col-12`}>
+                {/* Search Button */}            
+                <Button
+                  variant="contained"
+                  size="large"
+                  startIcon={<SearchIcon />}
+                  onClick={handleSearch}
+                  style={{
+                    backgroundColor: '#1a1a2e',
+                    color: '#ffffff',
+                    padding: '12px 48px',
+                    borderRadius: '999px',
+                    textTransform: 'none',
+                    fontSize: '16px',
+                    fontWeight: '600',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.backgroundColor = '#ffd700'
+                    e.currentTarget.style.color = '#1a1a2e'
+                    e.currentTarget.style.transform = 'translateY(-2px)'
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.backgroundColor = '#1a1a2e'
+                    e.currentTarget.style.color = '#ffffff'
+                    e.currentTarget.style.transform = 'translateY(0)'
+                  }}
+                >
+                  Search Properties
+                </Button>
               </div>
             </div>
           </div>
