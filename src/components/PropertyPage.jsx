@@ -1,349 +1,389 @@
-import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import properties from '../data/properties.json'
+import React, { useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
+import 'react-tabs/style/react-tabs.css'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined'
+import data from '../data/properties.json'
 
 const PropertyPage = () => {
+  const navigate = useNavigate()
   const { id } = useParams()
-  const [property, setProperty] = useState(null)
-  const [activeTab, setActiveTab] = useState('gallery')
-  const [carouselIndex, setCarouselIndex] = useState(0)
-
-  useEffect(() => {
-    const foundProperty = properties.properties.find(p => p.id === id)
-    setProperty(foundProperty)
-  }, [id])
-
-  if (!property) {
+  const [selectedTabIndex, setSelectedTabIndex] = useState(0)
+  const [selectedGalleryImage, setSelectedGalleryImage] = useState(null)
+  
+  // Find the property from the data based on the ID
+  const propertyData = data.properties.find(prop => prop.id === id)
+  
+  if (!propertyData) {
     return (
-      <div className="d-flex justify-content-center align-items-center min-vh-100">
-        <p className="fs-5">Loading property details...</p>
+      <div style={{ textAlign: 'center', padding: '60px 20px' }}>
+        <h2 style={{ color: '#1a1a1a' }}>Property Not Found</h2>
+        <p style={{ color: '#666' }}>The property you're looking for doesn't exist.</p>
+        <button
+          onClick={() => navigate('/search')}
+          style={{
+            padding: '10px 20px',
+            backgroundColor: '#1a1a1a',
+            color: 'white',
+            border: 'none',
+            borderRadius: '20px',
+            cursor: 'pointer',
+            fontSize: '14px'
+          }}
+        >
+          Back to Search
+        </button>
       </div>
     )
   }
 
-  // Carousel settings with 6 images minimum
-  const galleryImages = property.gallery && property.gallery.length > 0 
-    ? property.gallery 
-    : [property.picture, property.picture, property.picture, property.picture, property.picture, property.picture]
-
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    beforeChange: (current, next) => setCarouselIndex(next),
-  }
-
-  const thumbnailSettings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    focusOnSelect: true,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 3,
-        }
-      }
-    ]
-  }
+  const bannerImage = propertyData.picture
+  const gallery = propertyData.gallery || []
+  const galleryDisplay = gallery.slice(0, 6)
 
   return (
-    <div className="property-page" style={{ minHeight: '100vh', backgroundColor: '#f8f9fa', paddingBottom: '50px' }}>
-      {/* Header Section with Large Image */}
-      <div style={{ position: 'relative', height: '500px', overflow: 'hidden', borderRadius: '20px', margin: '30px 40px' }}>
-        <img 
-          src={galleryImages[carouselIndex]} 
-          alt="Property main view" 
+    <div style={{ width: '100%' }}>
+      {/* Full Width Banner Image */}
+      <div style={{ width: '100%', height: '500px', position: 'relative', overflow: 'hidden' }}>
+        <img
+          src={bannerImage}
+          alt="Property banner"
           style={{
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            borderRadius: '20px'
+            display: 'block'
           }}
         />
-        <div style={{
-          position: 'absolute',
-          bottom: '20px',
-          right: '20px',
-          backgroundColor: 'rgba(0, 0, 0, 0.6)',
-          color: 'white',
-          padding: '10px 20px',
-          borderRadius: '20px',
-          fontSize: '14px'
-        }}>
-          {carouselIndex + 1} / {galleryImages.length}
-        </div>
       </div>
 
-      {/* Property Info Section */}
-      <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
-        <div className="row" style={{ marginBottom: '40px' }}>
-          <div className="col-md-8">
-            <h1 style={{ fontSize: '40px', fontWeight: '300', marginBottom: '10px', fontFamily: '"Roboto", sans-serif' }}>
-              {property.name}
-            </h1>
-            <div style={{ display: 'flex', gap: '30px', marginBottom: '20px', flexWrap: 'wrap' }}>
-              <div>
-                <p style={{ color: '#666', fontSize: '14px', margin: '0' }}>Location</p>
-                <p style={{ fontSize: '16px', fontWeight: '500', margin: '5px 0 0 0' }}>{property.location}</p>
-              </div>
-              <div>
-                <p style={{ color: '#666', fontSize: '14px', margin: '0' }}>Property Type</p>
-                <p style={{ fontSize: '16px', fontWeight: '500', margin: '5px 0 0 0' }}>{property.type}</p>
-              </div>
-              <div>
-                <p style={{ color: '#666', fontSize: '14px', margin: '0' }}>Bedrooms</p>
-                <p style={{ fontSize: '16px', fontWeight: '500', margin: '5px 0 0 0' }}>{property.bedrooms}</p>
-              </div>
-            </div>
-            <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '15px', marginBottom: '20px' }}>
-              <p style={{ color: '#666', fontSize: '14px', margin: '0' }}>Price</p>
-              <p style={{ fontSize: '32px', fontWeight: 'bold', margin: '5px 0 0 0', color: '#000' }}>
-                {property.currency} {property.price.toLocaleString()}
-              </p>
-              <p style={{ color: '#999', fontSize: '14px', margin: '10px 0 0 0' }}>Tenure: {property.tenure}</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Tabs Navigation */}
-        <div style={{ 
-          display: 'flex', 
-          gap: '0', 
-          borderBottom: '1px solid #ddd',
-          marginBottom: '30px',
-          backgroundColor: 'white',
-          borderRadius: '15px 15px 0 0',
-          overflow: 'hidden'
-        }}>
-          {['gallery', 'description', 'floorplan', 'location'].map((tab) => (
+      {/* Main Content Div Starting from Middle of Banner */}
+      <div
+        style={{
+          width: '100%',
+          marginTop: '-200px',
+          position: 'relative',
+          zIndex: 1,
+          paddingBottom: '60px'
+        }}
+      >
+        <div
+          className="container"
+          style={{
+            backgroundColor: 'white',
+            borderRadius: '30px',
+            padding: '40px',
+            boxShadow: '0 10px 40px rgba(0, 0, 0, 0.1)',
+            maxWidth: '1200px'
+          }}
+        >
+          {/* Back Button and Location - Top Section */}
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: '30px'
+            }}
+          >
             <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
+              onClick={() => navigate(-1)}
               style={{
-                flex: 1,
-                padding: '15px',
+                background: 'none',
                 border: 'none',
-                backgroundColor: activeTab === tab ? '#000' : '#f5f5f5',
-                color: activeTab === tab ? 'white' : '#666',
                 cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
                 fontSize: '16px',
-                fontWeight: activeTab === tab ? '600' : '500',
-                transition: 'all 0.3s ease',
-                textTransform: 'capitalize',
-                borderRadius: tab === 'gallery' ? '15px 0 0 0' : tab === 'location' ? '0 15px 0 0' : '0'
+                color: '#333',
+                padding: '0',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = '#1a1a1a')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = '#333')}
+            >
+              <ArrowBackIcon style={{ fontSize: '24px' }} />
+              
+            </button>
+
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                fontSize: '14px',
+                color: '#666'
               }}
             >
-              {tab}
-            </button>
-          ))}
-        </div>
-
-        {/* Tab Content */}
-        <div style={{ 
-          backgroundColor: 'white', 
-          borderRadius: '0 0 15px 15px', 
-          padding: '40px',
-          minHeight: '500px'
-        }}>
-          {/* Gallery Tab */}
-          {activeTab === 'gallery' && (
-            <div>
-              <h2 style={{ fontSize: '24px', fontWeight: '500', marginBottom: '30px' }}>Gallery</h2>
-              
-              {/* Main Carousel */}
-              <div style={{ marginBottom: '30px', borderRadius: '15px', overflow: 'hidden' }}>
-                <Slider {...sliderSettings}>
-                  {galleryImages.map((img, index) => (
-                    <div key={index} style={{ outline: 'none' }}>
-                      <img
-                        src={img}
-                        alt={`Gallery ${index + 1}`}
-                        style={{
-                          width: '100%',
-                          height: '400px',
-                          objectFit: 'cover',
-                          borderRadius: '15px'
-                        }}
-                      />
-                    </div>
-                  ))}
-                </Slider>
-              </div>
-
-              {/* Thumbnail Carousel */}
-              <div style={{ marginTop: '20px' }}>
-                <h3 style={{ fontSize: '16px', fontWeight: '500', marginBottom: '15px' }}>Photos</h3>
-                <Slider {...thumbnailSettings}>
-                  {galleryImages.map((img, index) => (
-                    <div key={index} style={{ padding: '5px', outline: 'none' }}>
-                      <img
-                        src={img}
-                        alt={`Thumbnail ${index + 1}`}
-                        style={{
-                          width: '100%',
-                          height: '100px',
-                          objectFit: 'cover',
-                          borderRadius: '10px',
-                          cursor: 'pointer',
-                          border: carouselIndex === index ? '3px solid #000' : '3px solid transparent',
-                          transition: 'all 0.3s ease'
-                        }}
-                        onClick={() => setCarouselIndex(index)}
-                      />
-                    </div>
-                  ))}
-                </Slider>
-              </div>
+              <LocationOnOutlinedIcon style={{ fontSize: '20px' }} />
+              <span>{propertyData.location}</span>
             </div>
-          )}
+          </div>
 
-          {/* Description Tab */}
-          {activeTab === 'description' && (
+          {/* Property Name and Price Section */}
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'flex-start',
+              marginBottom: '20px',
+              gap: '40px'
+            }}
+          >
             <div>
-              <h2 style={{ fontSize: '24px', fontWeight: '500', marginBottom: '20px' }}>About this property</h2>
-              <p style={{ 
-                fontSize: '16px', 
-                lineHeight: '1.8', 
-                color: '#555',
-                marginBottom: '30px'
-              }}>
-                {property.description}
+              <h1
+                style={{
+                  fontSize: '36px',
+                  fontWeight: '600',
+                  margin: '0 0 15px 0',
+                  color: '#1a1a1a',
+                  fontFamily: '"Inter", sans-serif'
+                }}
+              >
+                {propertyData.name}
+              </h1>
+              <p
+                style={{
+                  fontSize: '16px',
+                  color: '#666',
+                  margin: '0',
+                  fontFamily: '"Inter", sans-serif'
+                }}
+              >
+                {propertyData.bedrooms} Bedroom {propertyData.type}
               </p>
-              
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '30px', marginTop: '30px' }}>
-                <div style={{ padding: '20px', backgroundColor: '#f8f9fa', borderRadius: '15px' }}>
-                  <h3 style={{ fontSize: '14px', color: '#666', marginBottom: '10px' }}>Property Type</h3>
-                  <p style={{ fontSize: '20px', fontWeight: '600' }}>{property.type}</p>
+            </div>
+
+            <div
+              style={{
+                textAlign: 'right'
+              }}
+            >
+              <p
+                style={{
+                  fontSize: '14px',
+                  color: '#999',
+                  margin: '0 0 5px 0',
+                  fontFamily: '"Inter", sans-serif'
+                }}
+              >
+                Price
+              </p>
+              <h2
+                style={{
+                  fontSize: '32px',
+                  fontWeight: '700',
+                  margin: '0',
+                  color: '#1a1a1a',
+                  fontFamily: '"Inter", sans-serif'
+                }}
+              >
+                {propertyData.currency} {propertyData.price.toLocaleString()}
+              </h2>
+            </div>
+          </div>
+
+          {/* Gallery Grid - 6 Images */}
+          {galleryDisplay.length > 0 && (
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+                gap: '15px',
+                marginBottom: '40px'
+              }}
+            >
+              {galleryDisplay.map((image, index) => (
+                <div
+                  key={index}
+                  style={{
+                    position: 'relative',
+                    borderRadius: '15px',
+                    overflow: 'hidden',
+                    height: '180px',
+                    cursor: 'pointer',
+                    transition: 'transform 0.3s ease'
+                  }}
+                  onClick={() => setSelectedGalleryImage(image)}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.transform = 'scale(1.05)')
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.transform = 'scale(1)')
+                  }
+                >
+                  <img
+                    src={image}
+                    alt={`Gallery ${index + 1}`}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      display: 'block'
+                    }}
+                  />
                 </div>
-                <div style={{ padding: '20px', backgroundColor: '#f8f9fa', borderRadius: '15px' }}>
-                  <h3 style={{ fontSize: '14px', color: '#666', marginBottom: '10px' }}>Bedrooms</h3>
-                  <p style={{ fontSize: '20px', fontWeight: '600' }}>{property.bedrooms}</p>
-                </div>
-                <div style={{ padding: '20px', backgroundColor: '#f8f9fa', borderRadius: '15px' }}>
-                  <h3 style={{ fontSize: '14px', color: '#666', marginBottom: '10px' }}>Tenure</h3>
-                  <p style={{ fontSize: '20px', fontWeight: '600' }}>{property.tenure}</p>
-                </div>
-                <div style={{ padding: '20px', backgroundColor: '#f8f9fa', borderRadius: '15px' }}>
-                  <h3 style={{ fontSize: '14px', color: '#666', marginBottom: '10px' }}>Postal Code</h3>
-                  <p style={{ fontSize: '20px', fontWeight: '600' }}>{property.postalCode}</p>
-                </div>
-              </div>
+              ))}
             </div>
           )}
 
-          {/* Floor Plan Tab */}
-          {activeTab === 'floorplan' && (
-            <div>
-              <h2 style={{ fontSize: '24px', fontWeight: '500', marginBottom: '30px' }}>Floor Plan</h2>
-              <div style={{ 
-                display: 'flex', 
-                justifyContent: 'center', 
-                alignItems: 'center',
-                backgroundColor: '#f8f9fa',
-                borderRadius: '15px',
-                minHeight: '500px',
-                padding: '40px'
-              }}>
-                <div style={{ textAlign: 'center' }}>
-                  <svg width="300" height="400" viewBox="0 0 300 400" style={{ marginBottom: '30px' }}>
-                    {/* Outer walls */}
-                    <rect x="20" y="20" width="260" height="360" fill="none" stroke="#000" strokeWidth="3"/>
-                    
-                    {/* Main living area */}
-                    <rect x="30" y="30" width="120" height="150" fill="none" stroke="#333" strokeWidth="2"/>
-                    <text x="90" y="110" textAnchor="middle" fontSize="12" fontWeight="bold">Living Room</text>
-                    
-                    {/* Kitchen */}
-                    <rect x="160" y="30" width="110" height="75" fill="none" stroke="#333" strokeWidth="2"/>
-                    <text x="215" y="70" textAnchor="middle" fontSize="12" fontWeight="bold">Kitchen</text>
-                    
-                    {/* Dining */}
-                    <rect x="160" y="115" width="110" height="65" fill="none" stroke="#333" strokeWidth="2"/>
-                    <text x="215" y="155" textAnchor="middle" fontSize="12" fontWeight="bold">Dining</text>
-                    
-                    {/* Bedroom 1 */}
-                    <rect x="30" y="190" width="100" height="100" fill="none" stroke="#333" strokeWidth="2"/>
-                    <text x="80" y="245" textAnchor="middle" fontSize="12" fontWeight="bold">Bedroom 1</text>
-                    
-                    {/* Bedroom 2 */}
-                    <rect x="140" y="190" width="100" height="100" fill="none" stroke="#333" strokeWidth="2"/>
-                    <text x="190" y="245" textAnchor="middle" fontSize="12" fontWeight="bold">Bedroom 2</text>
-                    
-                    {/* Bathroom */}
-                    <rect x="250" y="190" width="20" height="100" fill="none" stroke="#333" strokeWidth="2"/>
-                    
-                    {/* Bedroom 3 */}
-                    <rect x="30" y="300" width="100" height="70" fill="none" stroke="#333" strokeWidth="2"/>
-                    <text x="80" y="340" textAnchor="middle" fontSize="12" fontWeight="bold">Bedroom 3</text>
-                    
-                    {/* Laundry/Storage */}
-                    <rect x="140" y="300" width="130" height="70" fill="none" stroke="#333" strokeWidth="2"/>
-                    <text x="205" y="340" textAnchor="middle" fontSize="12" fontWeight="bold">Laundry/Storage</text>
-                  </svg>
-                  <p style={{ color: '#666', fontSize: '16px', marginTop: '20px' }}>
-                    Approximate floor plan layout for {property.bedrooms}-bedroom {property.type}
-                  </p>
+          {/* Tabs Section */}
+          <div style={{ marginTop: '40px' }}>
+            <Tabs selectedIndex={selectedTabIndex} onSelect={(index) => setSelectedTabIndex(index)}>
+              <TabList
+                style={{
+                  borderBottom: '2px solid #e0e0e0',
+                  display: 'flex',
+                  gap: '40px',
+                  padding: '0 0 15px 0',
+                  margin: '0',
+                  listStyle: 'none'
+                }}
+              >
+                <Tab
+                  style={{
+                    padding: '10px 0',
+                    cursor: 'pointer',
+                    fontSize: '16px',
+                    fontFamily: '"Inter", sans-serif',
+                    fontWeight: selectedTabIndex === 0 ? '600' : '400',
+                    color: selectedTabIndex === 0 ? '#1a1a1a' : '#999',
+                    border: 'none',
+                    borderBottom: selectedTabIndex === 0 ? '3px solid #1a1a1a' : 'none',
+                    background: 'none',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  Description
+                </Tab>
+                <Tab
+                  style={{
+                    padding: '10px 0',
+                    cursor: 'pointer',
+                    fontSize: '16px',
+                    fontFamily: '"Inter", sans-serif',
+                    fontWeight: selectedTabIndex === 1 ? '600' : '400',
+                    color: selectedTabIndex === 1 ? '#1a1a1a' : '#999',
+                    border: 'none',
+                    borderBottom: selectedTabIndex === 1 ? '3px solid #1a1a1a' : 'none',
+                    background: 'none',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  Floor Plan
+                </Tab>
+                <Tab
+                  style={{
+                    padding: '10px 0',
+                    cursor: 'pointer',
+                    fontSize: '16px',
+                    fontFamily: '"Inter", sans-serif',
+                    fontWeight: selectedTabIndex === 2 ? '600' : '400',
+                    color: selectedTabIndex === 2 ? '#1a1a1a' : '#999',
+                    border: 'none',
+                    borderBottom: selectedTabIndex === 2 ? '3px solid #1a1a1a' : 'none',
+                    background: 'none',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  Google Maps
+                </Tab>
+              </TabList>
+
+              <TabPanel>
+                <div
+                  style={{
+                    padding: '30px 0',
+                    fontSize: '16px',
+                    lineHeight: '1.8',
+                    color: '#666',
+                    fontFamily: '"Inter", sans-serif'
+                  }}
+                >
+                  <h3 style={{ color: '#1a1a1a', marginTop: '0' }}>About this property</h3>
+                  <p>{propertyData.description}</p>
+                  
+                  <div style={{ marginTop: '30px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '30px' }}>
+                    <div>
+                      <h4 style={{ color: '#1a1a1a', marginBottom: '10px' }}>Property Details</h4>
+                      <ul style={{ listStyle: 'none', padding: '0', margin: '0' }}>
+                        <li style={{ marginBottom: '8px' }}>
+                          <strong>Type:</strong> {propertyData.type}
+                        </li>
+                        <li style={{ marginBottom: '8px' }}>
+                          <strong>Bedrooms:</strong> {propertyData.bedrooms}
+                        </li>
+                        <li style={{ marginBottom: '8px' }}>
+                          <strong>Tenure:</strong> {propertyData.tenure}
+                        </li>
+                        <li style={{ marginBottom: '8px' }}>
+                          <strong>Location:</strong> {propertyData.location}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          )}
+              </TabPanel>
 
-          {/* Location Tab with Google Maps */}
-          {activeTab === 'location' && (
-            <div>
-              <h2 style={{ fontSize: '24px', fontWeight: '500', marginBottom: '30px' }}>Location</h2>
-              
-              <div style={{ marginBottom: '30px' }}>
-                <p style={{ fontSize: '18px', fontWeight: '600', marginBottom: '10px' }}>{property.location}</p>
-                <p style={{ color: '#666', fontSize: '16px' }}>Postal Code: {property.postalCode}</p>
-              </div>
+              <TabPanel>
+                <div
+                  style={{
+                    padding: '30px 0',
+                    textAlign: 'center',
+                    color: '#999',
+                    fontFamily: '"Inter", sans-serif'
+                  }}
+                >
+                  <p style={{ fontSize: '16px' }}>Floor plan coming soon...</p>
+                </div>
+              </TabPanel>
 
-              {/* Google Maps Iframe */}
-              <div style={{ 
-                borderRadius: '15px', 
-                overflow: 'hidden',
-                marginBottom: '30px'
-              }}>
-                <iframe
-                  width="100%"
-                  height="500"
-                  frameBorder="0"
-                  style={{ border: 0 }}
-                  src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDLzQK6C68eRvzDYlMQsVOwwBEgBRzJOck&q=${encodeURIComponent(property.location)}`}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title={`Map of ${property.location}`}
-                ></iframe>
-              </div>
-
-              <div style={{ 
-                backgroundColor: '#f8f9fa', 
-                padding: '20px', 
-                borderRadius: '15px',
-                marginBottom: '20px'
-              }}>
-                <h3 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '15px' }}>Coordinates</h3>
-                <p style={{ margin: '5px 0', color: '#555' }}>
-                  <strong>Latitude:</strong> {property.coordinates?.lat || 'N/A'}
-                </p>
-                <p style={{ margin: '5px 0', color: '#555' }}>
-                  <strong>Longitude:</strong> {property.coordinates?.lng || 'N/A'}
-                </p>
-              </div>
-            </div>
-          )}
+              <TabPanel>
+                <div
+                  style={{
+                    padding: '30px 0',
+                    fontFamily: '"Inter", sans-serif'
+                  }}
+                >
+                  {propertyData.coordinates ? (
+                    <div>
+                      <iframe
+                        width="100%"
+                        height="500"
+                        style={{ border: 'none', borderRadius: '15px' }}
+                        src={`https://maps.google.com/maps?q=${propertyData.coordinates.lat},${propertyData.coordinates.lng}&z=15&output=embed`}
+                        title="Property Location"
+                        loading="lazy"
+                      ></iframe>
+                      <p style={{ marginTop: '15px', fontSize: '14px', color: '#666' }}>
+                        <a 
+                          href={`https://maps.google.com/maps?q=${propertyData.coordinates.lat},${propertyData.coordinates.lng}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ color: '#1a1a1a', textDecoration: 'none' }}
+                        >
+                          Open in Google Maps
+                        </a>
+                      </p>
+                    </div>
+                  ) : (
+                    <div
+                      style={{
+                        padding: '30px',
+                        textAlign: 'center',
+                        color: '#999',
+                        fontSize: '16px'
+                      }}
+                    >
+                      <p>Location map coming soon...</p>
+                    </div>
+                  )}
+                </div>
+              </TabPanel>
+            </Tabs>
+          </div>
         </div>
       </div>
     </div>
