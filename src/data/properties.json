@@ -18,7 +18,12 @@
                 "month":"October",
                 "day":15,
                 "year":2022
-            }
+            },
+            "gallery":[
+                "/images/ho3.jpg",
+                "/images/ho4.jpg",
+                "/images/ho3.jpg"
+            ]
         },
 	
         {
