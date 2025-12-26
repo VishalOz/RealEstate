@@ -43,7 +43,7 @@ const PropertyPage = () => {
   const galleryDisplay = gallery.slice(0, 6)
 
   return (
-    <div style={{ width: '100%' }}>
+    <div className={`container`} style={{ width: '100%'}}>
       {/* Full Width Banner Image */}
       <div style={{ width: '100%', height: '500px', position: 'relative', overflow: 'hidden' }}>
         <img
@@ -52,6 +52,7 @@ const PropertyPage = () => {
           style={{
             width: '100%',
             height: '100%',
+            borderRadius: '0 0 30px 30px',
             objectFit: 'cover',
             display: 'block'
           }}
