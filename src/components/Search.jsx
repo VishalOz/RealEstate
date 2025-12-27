@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { TextField, MenuItem, Button, Grid } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import DeleteIcon from '@mui/icons-material/Delete'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import ClearAllIcon from '@mui/icons-material/ClearAll'
 
 import PropertyCard from './PropertyCard.jsx'
 import data from '../data/properties.json'
@@ -22,6 +25,7 @@ const Search = () => {
   const [searchResults, setSearchResults] = useState(null)
   const [hasSearched, setHasSearched] = useState(false)
   const [draggedItem, setDraggedItem] = useState(null)
+  const [draggedFromProperty, setDraggedFromProperty] = useState(null)
 
   const handleChange = (e) => {
     setFilters({
@@ -103,8 +107,19 @@ const Search = () => {
     )
   }
 
-  const handleDragStart = (e, favId) => {
-    setDraggedItem(favId)
+  // Helper: remove favourite by id
+  const removeFavourite = (id) => {
+    setFavourites((prev) => prev.filter((x) => x !== id))
+  }
+
+  // Helper: delete all favourites
+  const deleteAllFavourites = () => {
+    setFavourites([])
+  }
+
+  const handleDragStart = (e, itemId, isFromProperty = false) => {
+    setDraggedItem(itemId)
+    setDraggedFromProperty(isFromProperty)
     e.dataTransfer.effectAllowed = 'move'
   }
 
@@ -116,9 +131,19 @@ const Search = () => {
   const handleDropOnRemove = (e) => {
     e.preventDefault()
     if (draggedItem) {
-      toggleFavourite(draggedItem)
+      removeFavourite(draggedItem)
       setDraggedItem(null)
+      setDraggedFromProperty(null)
     }
+  }
+
+  const handleDropOnFavourites = (e) => {
+    e.preventDefault()
+    if (draggedItem && draggedFromProperty && !favourites.includes(draggedItem)) {
+      setFavourites((prev) => [...prev, draggedItem])
+    }
+    setDraggedItem(null)
+    setDraggedFromProperty(null)
   }
 
   return (
@@ -252,7 +277,7 @@ const Search = () => {
                 />
               </div>
 
-              <div className={`col-12 d-flex justify-content-center`}>
+              <div className={`col-12`}>
                 {/* Search Button */}            
                 <Button
                   variant="contained"
@@ -304,7 +329,17 @@ const Search = () => {
               <div className="col-12 col-md-8">
                 <div className="row g-3">
                   {(hasSearched ? searchResults : properties).map((property) => (
-                    <div key={property.id} className="col-12 col-sm-6">
+                    <div 
+                      key={property.id} 
+                      className="col-12 col-sm-6"
+                      draggable
+                      onDragStart={(e) => handleDragStart(e, property.id, true)}
+                      style={{
+                        opacity: draggedItem === property.id ? 0.5 : 1,
+                        transition: 'opacity 0.2s ease',
+                        cursor: 'grab'
+                      }}
+                    >
                       <PropertyCard 
                         property={property} 
                         isFavourite={favourites.includes(property.id)}
@@ -321,51 +356,155 @@ const Search = () => {
                   {/* Favourites Panel */}
                   <div className="col-12">
                     <div className="card shadow-sm p-3" style={{ borderRadius: '20px' }}>
-                      <h5 style={{ fontFamily: '"Inter", sans-serif' }}>Favourites</h5>
-                      {favourites.length === 0 ? (
-                        <p style={{ color: '#666', fontSize: '14px' }}>No favourites added yet.</p>
-                      ) : (
-                        <div className="row g-3">
-                          {favourites.map((favId) => {
-                            const favProperty = properties.find((prop) => prop.id === favId)
-                            return (
-                              <div 
-                                key={favId} 
-                                className="col-12"
-                                draggable
-                                onDragStart={(e) => handleDragStart(e, favId)}
-                                style={{
-                                  opacity: draggedItem === favId ? 0.5 : 1,
-                                  transition: 'opacity 0.2s ease',
-                                  cursor: 'move'
-                                }}
-                              >
-                                {favProperty ? (
-                                  <PropertyCard 
-                                    property={favProperty} 
-                                    isFavourite={favourites.includes(favProperty.id)}
-                                    onToggleFavourite={toggleFavourite}
-                                  />
-                                ) : (
-                                  <p>Unknown Property</p>
-                                )}
-                              </div>
-                            )
-                          })}
-                        </div>
-                      )}
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
+                        <h5 style={{ fontFamily: '"Inter", sans-serif', margin: '0' }}>Favourites ({favourites.length})</h5>
+                        {favourites.length > 0 && (
+                          <button
+                            onClick={deleteAllFavourites}
+                            style={{
+                              background: 'none',
+                              border: 'none',
+                              cursor: 'pointer',
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '5px',
+                              fontSize: '12px',
+                              color: '#999',
+                              padding: '5px 10px',
+                              transition: 'all 0.3s ease'
+                            }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.color = '#d32f2f'
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.color = '#999'
+                            }}
+                          >
+                            <ClearAllIcon style={{ fontSize: '16px' }} />
+                            Clear All
+                          </button>
+                        )}
+                      </div>
+
+                      <div
+                        onDragOver={handleDragOver}
+                        onDrop={handleDropOnFavourites}
+                        style={{
+                          borderRadius: '10px',
+                          transition: 'all 0.2s ease',
+                          backgroundColor: draggedItem && draggedFromProperty ? '#f0f8ff' : 'transparent',
+                          border: draggedItem && draggedFromProperty ? '2px dashed #ffd700' : 'none'
+                        }}
+                      >
+                        {favourites.length === 0 ? (
+                          <div
+                            style={{
+                              padding: '30px 20px',
+                              textAlign: 'center',
+                              color: '#999',
+                              fontSize: '14px',
+                              minHeight: '150px',
+                              display: 'flex',
+                              flexDirection: 'column',
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                              border: '2px dashed #e0e0e0',
+                              borderRadius: '10px'
+                            }}
+                          >
+                            <FavoriteBorderIcon style={{ fontSize: '32px', marginBottom: '10px', color: '#ddd' }} />
+                            <p style={{ margin: '0' }}>Drag properties here to add to favorites</p>
+                          </div>
+                        ) : (
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                            {favourites.map((favId) => {
+                              const favProperty = properties.find((prop) => prop.id === favId)
+                              return (
+                                <div 
+                                  key={favId}
+                                  draggable
+                                  onDragStart={(e) => handleDragStart(e, favId, false)}
+                                  style={{
+                                    padding: '12px',
+                                    backgroundColor: '#f9f9f9',
+                                    borderRadius: '10px',
+                                    borderLeft: '4px solid #ffd700',
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    alignItems: 'flex-start',
+                                    gap: '10px',
+                                    transition: 'all 0.3s ease',
+                                    opacity: draggedItem === favId ? 0.5 : 1,
+                                    cursor: draggedItem === favId ? 'grabbing' : 'grab'
+                                  }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.backgroundColor = '#f0f0f0'
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.backgroundColor = '#f9f9f9'
+                                  }}
+                                >
+                                  <div style={{ flex: 1, minWidth: 0 }}>
+                                    {favProperty ? (
+                                      <>
+                                        <h6 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: '600', color: '#1a1a2e', fontFamily: '"Inter", sans-serif', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                          {favProperty.name}
+                                        </h6>
+                                        <p style={{ margin: '0 0 4px 0', fontSize: '12px', color: '#666', fontFamily: '"Inter", sans-serif' }}>
+                                          {favProperty.bedrooms} Bed • {favProperty.type}
+                                        </p>
+                                        <p style={{ margin: '0', fontSize: '13px', fontWeight: '600', color: '#1a1a2e', fontFamily: '"Inter", sans-serif' }}>
+                                          {favProperty.currency} {favProperty.price.toLocaleString()}
+                                        </p>
+                                      </>
+                                    ) : (
+                                      <p style={{ margin: '0', fontSize: '12px', color: '#999' }}>Unknown Property</p>
+                                    )}
+                                  </div>
+                                  <button
+                                    onClick={() => removeFavourite(favId)}
+                                    style={{
+                                      background: 'none',
+                                      border: 'none',
+                                      cursor: 'pointer',
+                                      padding: '4px 8px',
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      justifyContent: 'center',
+                                      color: '#999',
+                                      transition: 'all 0.3s ease',
+                                      minWidth: '32px',
+                                      height: '32px'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                      e.currentTarget.style.color = '#d32f2f'
+                                      e.currentTarget.style.backgroundColor = '#ffebee'
+                                    }}
+                                    onMouseLeave={(e) => {
+                                      e.currentTarget.style.color = '#999'
+                                      e.currentTarget.style.backgroundColor = 'transparent'
+                                    }}
+                                    title="Remove from favorites"
+                                  >
+                                    <DeleteIcon style={{ fontSize: '18px' }} />
+                                  </button>
+                                </div>
+                              )
+                            })}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
 
                   {/* Remove from Favourites Panel */}
-                  <div 
-                    className="col-12">
+                  <div className="col-12">
                     <div 
                       className="card shadow-sm p-3" 
                       style={{ 
                         borderRadius: '20px',
-                        backgroundColor: draggedItem ? '#f8f9fa' : 'white',
-                        border: draggedItem ? '2px dashed rgb(184, 184, 184)' : '1px dashed rgb(202, 202, 202)',
+                        backgroundColor: draggedItem && !draggedFromProperty ? '#f8f9fa' : 'white',
+                        border: draggedItem && !draggedFromProperty ? '2px dashed rgb(184, 184, 184)' : '1px dashed rgb(202, 202, 202)',
                         transition: 'all 0.2s ease',
                         minHeight: '150px',
                         display: 'flex',
@@ -379,7 +518,7 @@ const Search = () => {
                       <DeleteIcon style={{ fontSize: '48px', color: 'rgb(184, 184, 184)', marginBottom: '10px' }} />
                       
                       <p style={{ color: 'rgb(184, 184, 184)', fontSize: '12px', fontStyle: 'italic', textAlign: 'center', margin: 0 }}>
-                        {draggedItem ? 'Drop here to remove from favourites' : 'Drag properties here to remove'}
+                        {draggedItem && !draggedFromProperty ? 'Drop here to remove from favourites' : 'Drag favorites here to remove'}
                       </p>
                     </div>
                   </div>
