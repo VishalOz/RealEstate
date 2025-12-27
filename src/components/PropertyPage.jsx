@@ -2,8 +2,14 @@ import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import 'react-tabs/style/react-tabs.css'
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined'
+import CloseIcon from '@mui/icons-material/Close'
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import data from '../data/properties.json'
 
 const PropertyPage = () => {
@@ -11,6 +17,7 @@ const PropertyPage = () => {
   const { id } = useParams()
   const [selectedTabIndex, setSelectedTabIndex] = useState(0)
   const [selectedGalleryImage, setSelectedGalleryImage] = useState(null)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
   
   // Find the property from the data based on the ID
   const propertyData = data.properties.find(prop => prop.id === id)
@@ -42,8 +49,192 @@ const PropertyPage = () => {
   const gallery = propertyData.gallery || []
   const galleryDisplay = gallery.slice(0, 6)
 
+  // Carousel settings
+  const carouselSettings = {
+    dots: true,
+    infinite: galleryDisplay.length > 3,
+    speed: 500,
+    slidesToShow: Math.min(4, galleryDisplay.length),
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: Math.min(3, galleryDisplay.length),
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: Math.min(2, galleryDisplay.length),
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
+      }
+    ]
+  }
+
+  // Handle image click to open lightbox
+  const openLightbox = (image, index) => {
+    setSelectedGalleryImage(image)
+    setCurrentImageIndex(index)
+  }
+
+  // Close lightbox
+  const closeLightbox = () => {
+    setSelectedGalleryImage(null)
+  }
+
+  // Navigate to previous image
+  const prevImage = (e) => {
+    e.stopPropagation()
+    const newIndex = currentImageIndex === 0 ? galleryDisplay.length - 1 : currentImageIndex - 1
+    setCurrentImageIndex(newIndex)
+    setSelectedGalleryImage(galleryDisplay[newIndex])
+  }
+
+  // Navigate to next image
+  const nextImage = (e) => {
+    e.stopPropagation()
+    const newIndex = currentImageIndex === galleryDisplay.length - 1 ? 0 : currentImageIndex + 1
+    setCurrentImageIndex(newIndex)
+    setSelectedGalleryImage(galleryDisplay[newIndex])
+  }
+
   return (
     <div className={`container`} style={{ width: '100%'}}>
+      {/* Lightbox Modal */}
+      {selectedGalleryImage && (
+        <div
+          onClick={closeLightbox}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0, 0, 0, 0.85)',
+            backdropFilter: 'blur(10px)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 9999,
+            cursor: 'pointer'
+          }}
+        >
+          {/* Close Button */}
+          <button
+            onClick={closeLightbox}
+            style={{
+              position: 'absolute',
+              top: '20px',
+              right: '20px',
+              background: 'rgba(255, 255, 255, 0.2)',
+              border: 'none',
+              borderRadius: '50%',
+              width: '50px',
+              height: '50px',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'background 0.3s ease'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.4)'}
+            onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)'}
+          >
+            <CloseIcon style={{ color: 'white', fontSize: '28px' }} />
+          </button>
+
+          {/* Previous Button */}
+          <button
+            onClick={prevImage}
+            style={{
+              position: 'absolute',
+              left: '20px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              background: 'rgba(255, 255, 255, 0.2)',
+              border: 'none',
+              borderRadius: '50%',
+              width: '50px',
+              height: '50px',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'background 0.3s ease'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.4)'}
+            onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)'}
+          >
+            <ArrowBackIosNewIcon style={{ color: 'white', fontSize: '24px' }} />
+          </button>
+
+          {/* Next Button */}
+          <button
+            onClick={nextImage}
+            style={{
+              position: 'absolute',
+              right: '20px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              background: 'rgba(255, 255, 255, 0.2)',
+              border: 'none',
+              borderRadius: '50%',
+              width: '50px',
+              height: '50px',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'background 0.3s ease'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.4)'}
+            onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)'}
+          >
+            <ArrowForwardIosIcon style={{ color: 'white', fontSize: '24px' }} />
+          </button>
+
+          {/* Large Image */}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              maxWidth: '90%',
+              maxHeight: '85%',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center'
+            }}
+          >
+            <img
+              src={selectedGalleryImage}
+              alt="Gallery preview"
+              style={{
+                maxWidth: '100%',
+                maxHeight: '80vh',
+                objectFit: 'contain',
+                borderRadius: '15px',
+                boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)'
+              }}
+            />
+            <p style={{ color: 'white', marginTop: '15px', fontSize: '14px' }}>
+              {currentImageIndex + 1} / {galleryDisplay.length}
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Full Width Banner Image */}
       <div style={{ width: '100%', height: '500px', position: 'relative', overflow: 'hidden' }}>
         <img
@@ -190,43 +381,42 @@ const PropertyPage = () => {
           {galleryDisplay.length > 0 && (
             <div
               style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-                gap: '15px',
                 marginBottom: '40px'
               }}
             >
-              {galleryDisplay.map((image, index) => (
-                <div
-                  key={index}
-                  style={{
-                    position: 'relative',
-                    borderRadius: '15px',
-                    overflow: 'hidden',
-                    height: '180px',
-                    cursor: 'pointer',
-                    transition: 'transform 0.3s ease'
-                  }}
-                  onClick={() => setSelectedGalleryImage(image)}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.transform = 'scale(1.05)')
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.transform = 'scale(1)')
-                  }
-                >
-                  <img
-                    src={image}
-                    alt={`Gallery ${index + 1}`}
+              <Slider {...carouselSettings}>
+                {galleryDisplay.map((image, index) => (
+                  <div
+                    key={index}
                     style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      display: 'block'
+                      position: 'relative',
+                      borderRadius: '15px',
+                      overflow: 'hidden',
+                      height: '180px',
+                      cursor: 'pointer',
+                      transition: 'transform 0.3s ease'
                     }}
-                  />
-                </div>
-              ))}
+                    onClick={() => openLightbox(image, index)}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.transform = 'scale(1.05)')
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.transform = 'scale(1)')
+                    }
+                  >
+                    <img
+                      src={image}
+                      alt={`Gallery ${index + 1}`}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        display: 'block'
+                      }}
+                    />
+                  </div>
+                ))}
+              </Slider>
             </div>
           )}
 
