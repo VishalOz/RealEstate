@@ -277,7 +277,7 @@ const Search = () => {
                 />
               </div>
 
-              <div className={`col-12`}>
+              <div className={`col-12`} style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
                 {/* Search Button */}            
                 <Button
                   variant="contained"
