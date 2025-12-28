@@ -523,11 +523,25 @@ const PropertyPage = () => {
                   style={{
                     padding: '30px 0',
                     textAlign: 'center',
-                    color: '#999',
                     fontFamily: '"Inter", sans-serif'
                   }}
                 >
-                  <p style={{ fontSize: '16px' }}>Floor plan coming soon...</p>
+                  {propertyData.floorPlan ? (
+                    <div>
+                      <img
+                        src={propertyData.floorPlan}
+                        alt="Floor Plan"
+                        style={{
+                          maxWidth: '100%',
+                          height: 'auto',
+                          borderRadius: '15px',
+                          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)'
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    <p style={{ fontSize: '16px', color: '#999' }}>Floor plan not available</p>
+                  )}
                 </div>
               </TabPanel>
 
