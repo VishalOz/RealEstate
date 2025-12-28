@@ -19,13 +19,14 @@
                 "day":15,
                 "year":2022
             },
+            "floorPlan" : "/images/ho3fp.png",
             "gallery":[
                 "/images/ho3.jpg",
                 "/images/ho31.png",
                 "/images/ho32.png",
                 "/images/ho33.png",
                 "/images/ho34.png",
-                "/images/ho35.png"
+                "/images/ho36.png"
             ]
         },
 	
@@ -37,17 +38,20 @@
             "bedrooms":4,
             "price":125000,
             "tenure":"Freehold",
-            "description":"Spacious four bedroom family home with panoramic hill views, open plan kitchen/dining, and a sunlit living room. Close to schools, shops, transport and recreational areas.",
+            "description":"Nestled on a quiet, tree-lined cul-de-sac in the highly sought-after Highland Park neighborhood, this magnificent two-story residence offers an unparalleled blend of modern luxury and family-friendly functionality. Step inside to be greeted by a grand, light-filled foyer that flows seamlessly into the expansive open-plan living area, where floor-to-ceiling windows perfectly frame the breathtaking, uninterrupted valley vistas. The gourmet chef's kitchen is a masterpiece, featuring a large waterfall island, premium stainless steel appliances, a butler's pantry, and elegant stone countertops, all opening to a spacious dining area designed for memorable gatherings. Upstairs, the sanctuary-like primary suite boasts a private balcony, a generous walk-in wardrobe, and a spa-inspired ensuite with a freestanding tub and dual vanities. Three additional well-proportioned bedrooms, each with built-in robes, share a stylish family bathroom. Outdoors, the meticulously landscaped, fully-fenced yard includes a covered alfresco entertaining area with an integrated barbecue kitchen, a sparkling saltwater pool, and plenty of grassy space for play. Completing this exceptional package is a double garage with internal access, ducted air-conditioning, and proximity to top-tier schools, boutique shopping villages, and major transport links.",
             "location":"Kandy, Sri Lanka",
             "picture":"/images/ho1.jpg",
             "coordinates": {"lat": 7.2906, "lng": 80.6337},
             "postalCode":"20000",
             "url":"properties/prop3.html",
             "added": {"month":"November", "day":3, "year":2022},
+            "floorPlan" : "/images/ho1fp.png",
             "gallery":[
-                "/images/ho3.jpg",
-                "/images/ho4.jpg",
-                "/images/ho3.jpg"
+                "/images/ho1.jpg",
+                "/images/ho11.png",
+                "/images/ho12.png",
+                "/images/ho13.png",
+                "/images/ho14.png"
             ]
         },
         {
@@ -58,17 +62,20 @@
             "bedrooms":5,
             "price":2750000,
             "tenure":"Freehold",
-            "description":"Elegant coastal villa with generous living spaces, modern kitchen, and landscaped garden. Short distance to beaches, cafes, and historic Galle Fort.",
+            "description":"Poised on an expansive 900 sqm block with commanding district views, this stunning contemporary home is a testament to sophisticated design and indoor-outdoor living. The vast, north-facing main level is dedicated to entertainment, featuring a state-of-the-art kitchen with integrated European appliances, a dramatic scullery, and a living room that opens entirely via stacking glass doors to the incredible outdoor oasis. Here, you'll find a resort-style infinity pool, a sun-drenched deck, a fully-equipped outdoor kitchen, and a built-in fire pit area—perfect for year-round hosting. The home's intelligent layout includes a luxurious ground-floor master wing with a private courtyard and a study nook, while the upper level houses four additional bedrooms, a versatile media/rumpus room, and a second living space. High-end finishes abound, including engineered oak flooring, smart home automation, zoned climate control, and a sophisticated security system. Located mere minutes from renowned golf courses, waterfront dining, and express commuter routes, this property offers a resort-like lifestyle without compromise.",
             "location":"Galle, Sri Lanka",
             "picture":"/images/light.png",
             "coordinates": {"lat": 6.0535, "lng": 80.2210},
             "postalCode":"80000",
             "url":"properties/prop4.html",
             "added": {"month":"August", "day":22, "year":2023},
+            "floorPlan" : "/images/lightfp.png",
             "gallery":[
-                "/images/ho3.jpg",
-                "/images/ho4.jpg",
-                "/images/ho3.jpg"
+                "/images/light.png",
+                "/images/light11.png",
+                "/images/light12.png",
+                "/images/light13.png",
+                "/images/light14.png"
             ]
         },
         {
@@ -79,17 +86,19 @@
             "bedrooms":2,
             "price":9500000,
             "tenure":"Freehold",
-            "description":"Modern two-bedroom apartment with open-plan living, balcony views, and secure parking. Convenient access to business hubs, shopping and transport.",
+            "description":"Charm and modern convenience merge flawlessly in this beautifully restored 1920s Californian Bungalow, situated on a generous corner plot in the historic Garden District. The home retains its timeless character with detailed craftsmanship, high ornate ceilings, original hardwood floors, and leadlight windows, yet has been expertly updated for contemporary living. The heart of the home is the spectacular rear extension, encompassing a vast family room and a stunning chef's kitchen with a French-door oven and a central preparation island, all flowing out to a wraparound veranda and the established, low-maintenance gardens. A unique and valuable asset is the detached, fully self-contained studio/granny flat above the double carport—ideal for guests, a home office, or rental income. The main house features four double bedrooms, including a serene main with garden access, and two refurbished period-style bathrooms. Enjoy the convenience of walking to vibrant cafes, artisan markets, and the botanical gardens, all while being part of a cherished, close-knit community with excellent school catchments.",
             "location":"Colombo 01, Sri Lanka",
             "picture":"/images/ao3.jpg",
             "coordinates": {"lat": 6.0329, "lng": 79.8612},
             "postalCode":"00100",
             "url":"properties/prop5.html",
             "added": {"month":"January", "day":15, "year":2024},
+            "floorPlan" : "/images/ho3fp.jpg",
             "gallery":[
-                "/images/ho3.jpg",
-                "/images/ho4.jpg",
-                "/images/ho3.jpg"
+                "/images/ao3.jpg",
+                "/images/ao31.png",
+                "/images/ao32.png",
+                "/images/ao33.png"
             ]
         },
         {
@@ -100,17 +109,18 @@
             "bedrooms":3,
             "price":850000,
             "tenure":"Freehold",
-            "description":"Charming three-bedroom home with bright interiors, fitted kitchen, and private garden. Close to schools, markets, bus routes and scenic trails.",
+            "description":"Experience lock-and-leave luxury in this impeccably finished, three-story townhome at the center of the vibrant Downtown Wharf precinct. This residence defines urban sophistication, featuring a sleek, minimalist design with clean lines and premium finishes throughout. The ground floor offers a secure two-car garage with a Tesla charging outlet and direct elevator access. The second floor unveils a breathtaking open-plan living, dining, and kitchen area with full-width sliding doors opening to a covered balcony, alongside a well-appointed guest bedroom and powder room. Ascend to the private top floor, where the lavish master suite features a walk-through robe and a sumptuous double-vanity ensuite. The true pièce de résistance, however, is the incredible private rooftop terrace—an entertainer's dream with a built-in bar, gas connections, and stunning skyline views, perfect for sunset cocktails. This low-maintenance home includes smart home integration, ducted air-conditioning, and is just steps from riverside walking paths, gourmet restaurants, light rail stations, and cultural venues.",
             "location":"Matale, Sri Lanka",
             "picture":"/images/ho2.jpg",
             "coordinates": {"lat": 7.4675, "lng": 80.6234},
             "postalCode":"21000",
             "url":"properties/prop6.html",
             "added": {"month":"March", "day":5, "year":2023},
+            "floorPlan" : "/images/ho3fp.jpg",
             "gallery":[
-                "/images/ho3.jpg",
-                "/images/ho4.jpg",
-                "/images/ho3.jpg"
+                "/images/ho2.jpg",
+                "/images/ho21.png",
+                ""
             ]
         },
         {
@@ -121,17 +131,20 @@
             "bedrooms":4,
             "price":1600000,
             "tenure":"Freehold",
-            "description":"Well-presented four-bedroom residence featuring dual living areas, large kitchen, and shaded courtyard. Easy reach of local shops, schools and transport.",
+            "description":"Experience a life of serene sophistication at this exceptional contemporary estate, perched directly on the sought-after shores of Crystal Lake. Designed to maximize its breathtaking waterfront setting, the home's expansive use of glass ensures panoramic, ever-changing views from nearly every room. The grand, open-concept main living area features soaring ceilings and a linear gas fireplace, seamlessly connecting to a vast, covered terrace and the heated lap pool—creating the ultimate indoor-outdoor flow for both grand-scale entertaining and tranquil daily living. The gourmet kitchen is a masterpiece of functionality and style, equipped with dual dishwashers, a professional-grade range, and a magnificent marble island that overlooks the water. The residence features a sumptuous main-floor primary suite with a private sitting area, a fireplace, and a spa-like ensuite with a steam shower. Upstairs, four additional en-suite bedrooms each boast balcony access, providing private retreats for family and guests. The property’s crown jewel is its 40-foot private dock with direct deep-water access, perfect for boating enthusiasts. This unparalleled offering includes a home theater, a climate-controlled wine cellar, and a fully-equipped gym, all within a gated community just minutes from yacht clubs and exclusive village shopping.",
             "location":"Thalawathugoda, Sri Lanka",
             "picture":"/images/ao4.jpg",
             "coordinates": {"lat": 6.8759, "lng": 79.9392},
             "postalCode":"22000",
             "url":"properties/prop7.html",
             "added": {"month":"May", "day":30, "year":2024},
+            "floorPlan" : "/images/ho3fp.jpg",
             "gallery":[
-                "/images/ho3.jpg",
-                "/images/ho4.jpg",
-                "/images/ho3.jpg"
+                "/images/ao41.png",
+                "/images/ao42.png",
+                "/images/ao43.png",
+                "/images/ao44.png",
+                "/images/ao4.jpg"
             ]
         },
         {
@@ -142,17 +155,21 @@
             "bedrooms":1,
             "price":16000,
             "tenure":"Freehold",
-            "description":"Well-presented four-bedroom residence featuring dual living areas, large kitchen, and shaded courtyard. Easy reach of local shops, schools and transport.",
+            "description":"Embrace a year-round resort lifestyle at this extraordinary mountain lodge-inspired retreat, nestled on 5 private acres at the edge of the prestigious Pine Ridge Reserve. This expansive, timber-and-stone home radiates warmth and rustic elegance, centered around a magnificent great room with a floor-to-ceiling native stone fireplace, exposed beams, and walls of windows that showcase the pristine forest and mountain vistas. The chef's kitchen, with its custom cabinetry, professional-grade appliances, and a colossal granite-topped island, is designed to cater to large gatherings, flowing effortlessly into a sun-drenched breakfast nook and formal dining area. The property is a self-contained paradise, featuring a private hiking trail, a stocked pond, and a charming, detached guest cottage ideal for visitors or a home office. The main house boasts five generous bedrooms, including a secluded primary suite on its own wing with a double-sided fireplace shared with a luxurious soaking tub. Additional amenities include a walk-out lower level with a game room and home cinema, a four-car heated garage with workshop space, and a wraparound deck with a built-in gas fire pit and an eight-person hot tub. Located just 15 minutes from ski lifts and championship golf, yet offering complete privacy, this is a legacy property for generations to enjoy.",
             "location":"Jaffna, Sri Lanka",
             "picture":"/images/ho5.jpg",
             "coordinates": {"lat": 9.6606, "lng": 80.0117},
             "postalCode":"40000",
             "url":"properties/prop7.html",
             "added": {"month":"May", "day":30, "year":2024},
+            "floorPlan" : "/images/ho4fp.jpg",
             "gallery":[
-                "/images/ho3.jpg",
-                "/images/ho4.jpg",
-                "/images/ho3.jpg"
+                "/images/ho5.jpg",
+                "/images/ho51.png",
+                "/images/ho52.png",
+                "/images/ho53.png",
+                "/images/ho54.png",
+                "/images/ho55.png"
             ]
         },
         {
@@ -163,13 +180,14 @@
             "bedrooms":2,
             "price":18500,
             "tenure":"Freehold",
-            "description":"Well-presented four-bedroom residence featuring dual living areas, large kitchen, and shaded courtyard. Easy reach of local shops, schools and transport.",
+            "description":"Step into the future of living with this award-winning, architect-designed smart home in the heart of the thriving Innovation District. This bold, geometric residence is a showcase of cutting-edge technology, sustainable design, and avant-garde style, constructed with superior materials like poured concrete, steel, and floor-to-ceiling smart glass that tints on command. The breathtaking double-height entrance gallery sets the tone, leading to a spectacular open-plan living space with a fully automated media wall, a statement chef's kitchen with integrated smart appliances, and a seamless transition to the minimalist courtyard featuring a reflecting pool and a cantilevered patio. Every aspect of the home is controlled via a centralized AI system, managing climate, multi-zone audio-visual, advanced security, and energy-efficient lighting. The lower level is dedicated to wellness and entertainment, housing a full-size indoor lap pool with a swim jet system, a glass-walled sauna, and a sophisticated home theater. The upper-level sanctuary includes three en-suite bedrooms, with the primary suite offering a private rooftop terrace with city skyline views and a bathroom with programmable chromatherapy. This one-of-a-kind property includes a Tesla-capable garage with two EV chargers and is a short walk to tech campuses, gourmet food halls, and the central metro station.",
             "location":"MARADANA, Sri Lanka",
             "picture":"/images/ao5.jpg",
             "coordinates": {"lat": 6.9270, "lng": 79.8640},
             "postalCode":"35000",
             "url":"properties/prop7.html",
             "added": {"month":"May", "day":30, "year":2024},
+            "floorPlan" : "/images/ho3fp.jpg",
             "gallery":[
                 "/images/ho3.jpg",
                 "/images/ho4.jpg",
