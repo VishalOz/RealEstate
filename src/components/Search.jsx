@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
-import { TextField, MenuItem, Button, Grid } from '@mui/material'
-import SearchIcon from '@mui/icons-material/Search'
-import DeleteIcon from '@mui/icons-material/Delete'
-import FavoriteIcon from '@mui/icons-material/Favorite'
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
-import ClearAllIcon from '@mui/icons-material/ClearAll'
 
 import PropertyCard from './PropertyCard.jsx'
 import data from '../data/properties.json'
+
+import { TextField, MenuItem, Button, Grid } from '@mui/material'
+import SearchIcon from '@mui/icons-material/Search'
+import DeleteIcon from '@mui/icons-material/Delete'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import ClearAllIcon from '@mui/icons-material/ClearAll'
+
 
 const Search = () => {
   const [filters, setFilters] = useState({
@@ -21,22 +22,21 @@ const Search = () => {
     postalCode: ''
   })
 
-  const [favourites, setFavourites] = useState([])
-  const [searchResults, setSearchResults] = useState(null)
-  const [hasSearched, setHasSearched] = useState(false)
-  const [draggedItem, setDraggedItem] = useState(null)
-  const [draggedFromProperty, setDraggedFromProperty] = useState(null)
+  const [favourites, setFavourites] = useState([]) // Array of property ID s
+  const [searchResults, setSearchResults] = useState(null) // Filtered results
+  const [hasSearched, setHasSearched] = useState(false) // Tells whether the Search button is clicked
+  const [draggedItem, setDraggedItem] = useState(null) // ID currently being dragged
+  const [draggedFromProperty, setDraggedFromProperty] = useState(null) // True if the property dragged from the property list
 
   const handleChange = (e) => {
     setFilters({
-      ...filters,
+      ...filters, // Getting all the properties that added to the favorite list
       [e.target.name]: e.target.value
     })
   }
 
   const handleSearch = () => {
-    // Check if at least one filter is filled
-    const hasAnyFilter = Object.values(filters).some(value => value !== '')
+    const hasAnyFilter = Object.values(filters).some(value => value !== '') // Check if at least one filter is filled
     
     if (!hasAnyFilter) {
       alert('Please fill in at least one search field')
@@ -45,35 +45,29 @@ const Search = () => {
 
     // Filter properties based on the criteria
     const filtered = properties.filter((property) => {
-      // Property Type filter
       if (filters.propertyType) {
-        const typeMatch = property.type.toLowerCase() === filters.propertyType.toLowerCase()
+        const typeMatch = property.type.toLowerCase() === filters.propertyType.toLowerCase() // Property Type filter
         if (!typeMatch) return false
       }
 
-      // Min Price filter
       if (filters.minPrice) {
-        if (property.price < parseInt(filters.minPrice)) return false
+        if (property.price < (filters.minPrice)) return false // Min Price filter
       }
 
-      // Max Price filter
       if (filters.maxPrice) {
-        if (property.price > parseInt(filters.maxPrice)) return false
+        if (property.price > (filters.maxPrice)) return false  // Max Price filter
       }
 
-      // Min Bedrooms filter
       if (filters.minBedrooms) {
-        if (property.bedrooms < parseInt(filters.minBedrooms)) return false
+        if (property.bedrooms < (filters.minBedrooms)) return false // Min Bedrooms filter
       }
 
-      // Max Bedrooms filter
       if (filters.maxBedrooms) {
-        if (property.bedrooms > parseInt(filters.maxBedrooms)) return false
+        if (property.bedrooms > (filters.maxBedrooms)) return false // Max Bedrooms filter
       }
 
-      // Postal Code filter
       if (filters.postalCode) {
-        if (property.postalCode !== filters.postalCode) return false
+        if (property.postalCode !== filters.postalCode) return false // Postal Code filter
       }
 
       // Date Added After filter
