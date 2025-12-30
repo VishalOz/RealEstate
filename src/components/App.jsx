@@ -25,7 +25,7 @@ const App = () => {
   return (
     <div>
       <div className={`container d-flex justify-content-center min-vh-100`} style={{position: 'relative', marginBottom: '100px'}}>
-        <img src={Home1} style={{borderRadius:'50px', width:'80rem', height:'47rem', marginTop:'30px'}}/>
+        <img src={Home1} style={{borderRadius:'50px', width:'80rem', height:'47rem', marginTop:'5px'}}/>
         <div style={{position: 'absolute', bottom: '140px', left: '70px'}}>
           <p className="text-white mb-2 mx-2 fs-6 fw-light" style={{maxWidth: '500px', fontFamily: '"Inter", sans-serif'}}>
             Modern Luxury Residence

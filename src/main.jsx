@@ -10,6 +10,7 @@ import Search from './components/Search.jsx'
 import PropertyPage from './components/PropertyPage.jsx'
 import About from './components/About.jsx'
 import Contact from './components/Contact.jsx'
+import Favorites from './components/Favorites.jsx'
 
 
 createRoot(document.getElementById('root')).render(
@@ -21,6 +22,7 @@ createRoot(document.getElementById('root')).render(
       <Route path="/property/:id" element={<PropertyPage />} />
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/favorites" element={<Favorites />} />
      </Routes>
     <Footer />
   </BrowserRouter>

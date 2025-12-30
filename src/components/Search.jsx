@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import PropertyCard from './PropertyCard.jsx'
 import data from '../data/properties.json'
@@ -22,11 +22,21 @@ const Search = () => {
     postalCode: ''
   })
 
-  const [favourites, setFavourites] = useState([]) // Array of property ID s
+  // Load favourites from localStorage
+  const [favourites, setFavourites] = useState(() => {
+    const saved = localStorage.getItem('favourites')
+    return saved ? JSON.parse(saved) : []
+  })
+  
   const [searchResults, setSearchResults] = useState(null) // Filtered results
   const [hasSearched, setHasSearched] = useState(false) // Tells whether the Search button is clicked
   const [draggedItem, setDraggedItem] = useState(null) // ID currently being dragged
   const [draggedFromProperty, setDraggedFromProperty] = useState(null) // True if the property dragged from the property list
+
+  // Sync favourites to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('favourites', JSON.stringify(favourites))
+  }, [favourites])
 
   const handleChange = (e) => {
     setFilters({
@@ -290,14 +300,12 @@ const Search = () => {
                     transition: 'all 0.3s ease'
                   }}
                   onMouseOver={(e) => {
-                    e.currentTarget.style.backgroundColor = '#ffd700'
-                    e.currentTarget.style.color = '#1a1a2e'
-                    e.currentTarget.style.transform = 'translateY(-2px)'
+                    e.target.style.backgroundColor = '#333';
+                    e.target.style.transform = 'translateY(-2px)';
                   }}
                   onMouseOut={(e) => {
-                    e.currentTarget.style.backgroundColor = '#1a1a2e'
-                    e.currentTarget.style.color = '#ffffff'
-                    e.currentTarget.style.transform = 'translateY(0)'
+                    e.target.style.backgroundColor = '#1a1a1a';
+                    e.target.style.transform = 'translateY(0)';
                   }}
                 >
                   Search Properties
