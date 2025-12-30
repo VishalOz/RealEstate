@@ -53,7 +53,7 @@ const Contact = () => {
       {/* Header Section */}
       <div className="text-center mb-5">
         <h1 style={{ 
-          fontWeight: 600, 
+          fontWeight: 400, 
           color: '#1a1a1a', 
           marginBottom: '15px',
           fontFamily: '"Inter", sans-serif'
