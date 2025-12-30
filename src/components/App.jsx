@@ -86,28 +86,28 @@ const App = () => {
       <div className={`container d-flex justify-content-center`} style={{position: 'relative', marginTop: '50px', marginBottom: '50px'}}>
         <div className={`row p-3 g-4 w-100`}>
           <div className={`col-lg-3 col-md-6 col-sm-6 col-12`}>
-            <div className={`p-3 border-0`} style={{borderRadius: '60px'}}>
+            <div className={`card p-3 border-0`} style={{borderRadius: '20px'}}>
               <LocationOnOutlinedIcon fontSize="medium" />
               <h4 className={`mt-3`}>Top Locations</h4>
               <p className={``}>Properties in prime areas with key amenities.</p>
             </div>
           </div>
           <div className={`col-lg-3 col-md-6 col-sm-6 col-12`}>
-            <div className={`p-3 border-0`} style={{borderRadius: '60px'}}>
+            <div className={`card p-3 border-0`} style={{borderRadius: '20px'}}>
               <ApartmentOutlinedIcon fontSize="medium" />
               <h4 className={`mt-3`}>Elite Estates</h4>
               <p className={``}>Upscale properties with luxury designs.</p>
             </div>
           </div>
           <div className={`col-lg-3 col-md-6 col-sm-6 col-12`}>
-            <div className={`p-3 border-0`} style={{borderRadius: '60px'}}>
+            <div className={`card p-3 border-0`} style={{borderRadius: '20px'}}>
               <HomeWorkOutlinedIcon fontSize="medium" />
               <h4 className={`mt-3`}>Budget Homes</h4>
               <p className={``}>Affordable options for families and individuals.</p>
             </div>
           </div>
           <div className={`col-lg-3 col-md-6 col-sm-6 col-12`}>
-            <div className={`p-3 border-0`} style={{borderRadius: '60px'}}>
+            <div className={`card p-3 border-0`} style={{borderRadius: '20px'}}>
               <LocalOfferOutlinedIcon fontSize="medium" />
               <h4 className={`mt-3`}>Best Deals</h4>
               <p className={``}>Competitive pricing on quality properties.</p>
@@ -135,22 +135,22 @@ const App = () => {
       <div className={`container d-flex justify-content-center`} style={{position: 'relative', marginTop: '30px', marginBottom: '50px'}}>
         <div className={`row p-3 g-3 w-100`}>
           <div className={`col-md-6 col-12`}>
-            <div className={`card shadow-md border-0`} style={{backgroundColor: 'rgba(0, 0, 0, 0.3)'}}>
+            <div className={`card shadow-md border-0`}>
               <img src={ho3} alt="Property" className={`img-fluid`} style={{borderRadius: '20px'}}/>
             </div>
           </div>
           <div className={`col-md-6 col-12`}>
-            <div className={`card shadow-md border-0`} style={{backgroundColor: 'rgba(0, 0, 0, 0.3)'}}>
+            <div className={`card shadow-md border-0`}>
              <img src={ho1} alt="Property" className={`img-fluid`} style={{borderRadius: '20px'}}/>
             </div>
           </div>
           <div className={`col-md-6 col-12`}>
-            <div className={`card shadow-md border-0`} style={{backgroundColor: 'rgba(0, 0, 0, 0.3)'}}>
+            <div className={`card shadow-md border-0`}>
               <img src={ho4} alt="Property" className={`img-fluid`} style={{borderRadius: '20px'}}/>
             </div>
           </div>
           <div className={`col-md-6 col-12`}>
-            <div className={`card shadow-md border-0`} style={{backgroundColor: 'rgba(0, 0, 0, 0.3)', borderRadius: '20px'}}>
+            <div className={`card shadow-md border-0`} style={{borderRadius: '20px'}}>
               <img src={ho5} alt="Property" className={`img-fluid`} style={{borderRadius: '20px'}}/>
             </div>
           </div>
