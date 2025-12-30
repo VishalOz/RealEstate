@@ -152,17 +152,33 @@ const Search = () => {
 
   return (
     <div>
+      {/* Hero Section */}
       <div className={`container d-flex justify-content-center`}>
-        <div className={`row p-3 gap-4`}>
+        <div className={`row p-3 gap-4`} style={{ padding: '15px' }}>
           <div className={`col`}>
-            <h1>Discover properties designed to inspire.</h1>
-            <p className={`text-center`}>Luxury residences where design meets comfort</p>
+            <h1 style={{ 
+              fontSize: 'clamp(1.5rem, 4vw, 2.5rem)', 
+              textAlign: 'center',
+              marginBottom: '10px'
+            }}>
+              Discover properties designed to inspire.
+            </h1>
+            <p className={`text-center`} style={{ 
+              fontSize: 'clamp(0.875rem, 2vw, 1rem)',
+              marginBottom: '0'
+            }}>
+              Luxury residences where design meets comfort
+            </p>
           </div>
         </div>
       </div>
 
-      <div className={`container p-3 gap-4`}>
-          <div className={`card p-3 shadow-md border-0`}>
+      {/* Search Filters Section */}
+      <div className={`container`} style={{ padding: '10px 15px' }}>
+          <div className={`card border-0`} style={{ 
+            padding: 'clamp(15px, 3vw, 24px)',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+          }}>
             <div className={`row g-3`}>
               <div className={`col-12 col-sm-6 col-md-4 col-lg-3`}>
                 {/* Property Type */}              
@@ -173,6 +189,7 @@ const Search = () => {
                   name="propertyType"
                   value={filters.propertyType}
                   onChange={handleChange}
+                  size="small"
                 >
                   <MenuItem value="">All Types</MenuItem>
                   <MenuItem value="house">House</MenuItem>
@@ -191,6 +208,7 @@ const Search = () => {
                   onChange={handleChange}
                   variant="outlined"
                   placeholder="$0"
+                  size="small"
                 />
               </div>
 
@@ -205,6 +223,7 @@ const Search = () => {
                   onChange={handleChange}
                   variant="outlined"
                   placeholder="$1,000,000"
+                  size="small"
                 />
               </div>
 
@@ -219,6 +238,7 @@ const Search = () => {
                   onChange={handleChange}
                   variant="outlined"
                   placeholder="1"
+                  size="small"
                 />
               </div>
 
@@ -233,6 +253,7 @@ const Search = () => {
                   onChange={handleChange}
                   variant="outlined"
                   placeholder="5+"
+                  size="small"
                 />
               </div>
 
@@ -249,6 +270,7 @@ const Search = () => {
                   InputLabelProps={{
                     shrink: true,
                   }}
+                  size="small"
                 />
               </div>
 
@@ -265,6 +287,7 @@ const Search = () => {
                   InputLabelProps={{
                     shrink: true,
                   }}
+                  size="small"
                 />
               </div>
 
@@ -278,26 +301,29 @@ const Search = () => {
                   onChange={handleChange}
                   variant="outlined"
                   placeholder="Enter postal code"
+                  size="small"
                 />
               </div>
 
-              <div className={`col-12`} style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+              <div className={`col-12`} style={{ display: 'flex', justifyContent: 'center', marginTop: '15px' }}>
                 {/* Search Button */}            
                 <Button
                   variant="contained"
                   size="large"
                   startIcon={<SearchIcon />}
                   onClick={handleSearch}
+                  fullWidth
                   style={{
                     backgroundColor: '#1a1a2e',
                     color: '#ffffff',
-                    padding: '12px 48px',
+                    padding: 'clamp(10px, 2vw, 12px) clamp(24px, 6vw, 48px)',
                     borderRadius: '999px',
                     textTransform: 'none',
-                    fontSize: '16px',
+                    fontSize: 'clamp(14px, 2vw, 16px)',
                     fontWeight: '600',
                     boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                    transition: 'all 0.3s ease'
+                    transition: 'all 0.3s ease',
+                    maxWidth: '400px'
                   }}
                   onMouseOver={(e) => {
                     e.target.style.backgroundColor = '#333';
@@ -315,20 +341,32 @@ const Search = () => {
           </div>
       </div>
 
-      <div className={`container`}>
-        <div className={`row p-3 g-3`}>
+      {/* Results Section */}
+      <div className={`container`} style={{ padding: '10px 15px' }}>
+        <div className={`row g-3`} style={{ padding: '15px 0' }}>
           {/* Display message if search was performed but no results found */}
           {hasSearched && searchResults && searchResults.length === 0 ? (
-            <div className={`col-12 text-center p-5`}>
-              <h3 style={{ color: '#1a1a2e', marginBottom: '10px', fontFamily: '"Inter", sans-serif'}}>No Properties Found</h3>
-              <p style={{ color: '#666', fontSize: '16px' }}>
+            <div className={`col-12 text-center`} style={{ padding: 'clamp(30px, 8vw, 50px)' }}>
+              <h3 style={{ 
+                color: '#1a1a2e', 
+                marginBottom: '10px', 
+                fontFamily: '"Inter", sans-serif',
+                fontSize: 'clamp(1.25rem, 3vw, 1.75rem)'
+              }}>
+                No Properties Found
+              </h3>
+              <p style={{ 
+                color: '#666', 
+                fontSize: 'clamp(14px, 2vw, 16px)',
+                padding: '0 15px'
+              }}>
                 We couldn't find any properties matching your search criteria. Please try adjusting your filters.
               </p>
             </div>
           ) : (
             <>
-              {/* Left side - Property Cards (2 columns) */}
-              <div className="col-12 col-md-8">
+              {/* Left side - Property Cards */}
+              <div className="col-12 col-lg-8" style={{ marginBottom: '20px' }}>
                 <div className="row g-3">
                   {(hasSearched ? searchResults : properties).map((property) => (
                     <div 
@@ -352,14 +390,30 @@ const Search = () => {
                 </div>
               </div>
 
-              {/* Right side - Favourites Column (3rd column) */}
-              <div className="col-12 col-md-4">
+              {/* Right side - Favourites Column */}
+              <div className="col-12 col-lg-4">
                 <div className="row g-3">
                   {/* Favourites Panel */}
                   <div className="col-12">
-                    <div className="card shadow-sm p-3" style={{ borderRadius: '20px' }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
-                        <h5 style={{ fontFamily: '"Inter", sans-serif', margin: '0' }}>Favourites ({favourites.length})</h5>
+                    <div className="card shadow-sm" style={{ 
+                      borderRadius: '20px',
+                      padding: 'clamp(15px, 3vw, 20px)'
+                    }}>
+                      <div style={{ 
+                        display: 'flex', 
+                        justifyContent: 'space-between', 
+                        alignItems: 'center', 
+                        marginBottom: '15px',
+                        flexWrap: 'wrap',
+                        gap: '10px'
+                      }}>
+                        <h5 style={{ 
+                          fontFamily: '"Inter", sans-serif', 
+                          margin: '0',
+                          fontSize: 'clamp(1rem, 2.5vw, 1.25rem)'
+                        }}>
+                          Favourites ({favourites.length})
+                        </h5>
                         {favourites.length > 0 && (
                           <button
                             onClick={deleteAllFavourites}
@@ -370,7 +424,7 @@ const Search = () => {
                               display: 'flex',
                               alignItems: 'center',
                               gap: '5px',
-                              fontSize: '12px',
+                              fontSize: 'clamp(11px, 2vw, 12px)',
                               color: '#999',
                               padding: '5px 10px',
                               transition: 'all 0.3s ease'
@@ -382,7 +436,7 @@ const Search = () => {
                               e.currentTarget.style.color = '#999'
                             }}
                           >
-                            <ClearAllIcon style={{ fontSize: '16px' }} />
+                            <ClearAllIcon style={{ fontSize: 'clamp(14px, 2.5vw, 16px)' }} />
                             Clear All
                           </button>
                         )}
@@ -401,11 +455,11 @@ const Search = () => {
                         {favourites.length === 0 ? (
                           <div
                             style={{
-                              padding: '30px 20px',
+                              padding: 'clamp(20px, 4vw, 30px)',
                               textAlign: 'center',
                               color: '#999',
-                              fontSize: '14px',
-                              minHeight: '150px',
+                              fontSize: 'clamp(12px, 2vw, 14px)',
+                              minHeight: '120px',
                               display: 'flex',
                               flexDirection: 'column',
                               justifyContent: 'center',
@@ -414,8 +468,14 @@ const Search = () => {
                               borderRadius: '10px'
                             }}
                           >
-                            <FavoriteBorderIcon style={{ fontSize: '32px', marginBottom: '10px', color: '#ddd' }} />
-                            <p style={{ margin: '0' }}>Drag properties here to add to favorites</p>
+                            <FavoriteBorderIcon style={{ 
+                              fontSize: 'clamp(24px, 5vw, 32px)', 
+                              marginBottom: '10px', 
+                              color: '#ddd' 
+                            }} />
+                            <p style={{ margin: '0', padding: '0 10px' }}>
+                              Drag properties here to add to favorites
+                            </p>
                           </div>
                         ) : (
                           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -427,7 +487,7 @@ const Search = () => {
                                   draggable
                                   onDragStart={(e) => handleDragStart(e, favId, false)}
                                   style={{
-                                    padding: '12px',
+                                    padding: 'clamp(10px, 2vw, 12px)',
                                     backgroundColor: '#f9f9f9',
                                     borderRadius: '10px',
                                     borderLeft: '4px solid #ffd700',
@@ -449,18 +509,44 @@ const Search = () => {
                                   <div style={{ flex: 1, minWidth: 0 }}>
                                     {favProperty ? (
                                       <>
-                                        <h6 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: '600', color: '#1a1a2e', fontFamily: '"Inter", sans-serif', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                        <h6 style={{ 
+                                          margin: '0 0 4px 0', 
+                                          fontSize: 'clamp(13px, 2vw, 14px)', 
+                                          fontWeight: '600', 
+                                          color: '#1a1a2e', 
+                                          fontFamily: '"Inter", sans-serif', 
+                                          overflow: 'hidden', 
+                                          textOverflow: 'ellipsis', 
+                                          whiteSpace: 'nowrap' 
+                                        }}>
                                           {favProperty.name}
                                         </h6>
-                                        <p style={{ margin: '0 0 4px 0', fontSize: '12px', color: '#666', fontFamily: '"Inter", sans-serif' }}>
+                                        <p style={{ 
+                                          margin: '0 0 4px 0', 
+                                          fontSize: 'clamp(11px, 1.8vw, 12px)', 
+                                          color: '#666', 
+                                          fontFamily: '"Inter", sans-serif' 
+                                        }}>
                                           {favProperty.bedrooms} Bed • {favProperty.type}
                                         </p>
-                                        <p style={{ margin: '0', fontSize: '13px', fontWeight: '600', color: '#1a1a2e', fontFamily: '"Inter", sans-serif' }}>
+                                        <p style={{ 
+                                          margin: '0', 
+                                          fontSize: 'clamp(12px, 2vw, 13px)', 
+                                          fontWeight: '600', 
+                                          color: '#1a1a2e', 
+                                          fontFamily: '"Inter", sans-serif' 
+                                        }}>
                                           {favProperty.currency} {favProperty.price.toLocaleString()}
                                         </p>
                                       </>
                                     ) : (
-                                      <p style={{ margin: '0', fontSize: '12px', color: '#999' }}>Unknown Property</p>
+                                      <p style={{ 
+                                        margin: '0', 
+                                        fontSize: 'clamp(11px, 2vw, 12px)', 
+                                        color: '#999' 
+                                      }}>
+                                        Unknown Property
+                                      </p>
                                     )}
                                   </div>
                                   <button
@@ -475,8 +561,9 @@ const Search = () => {
                                       justifyContent: 'center',
                                       color: '#999',
                                       transition: 'all 0.3s ease',
-                                      minWidth: '32px',
-                                      height: '32px'
+                                      minWidth: '28px',
+                                      height: '28px',
+                                      borderRadius: '4px'
                                     }}
                                     onMouseEnter={(e) => {
                                       e.currentTarget.style.color = '#d32f2f'
@@ -488,7 +575,7 @@ const Search = () => {
                                     }}
                                     title="Remove from favorites"
                                   >
-                                    <DeleteIcon style={{ fontSize: '18px' }} />
+                                    <DeleteIcon style={{ fontSize: 'clamp(16px, 2.5vw, 18px)' }} />
                                   </button>
                                 </div>
                               )
@@ -502,24 +589,36 @@ const Search = () => {
                   {/* Remove from Favourites Panel */}
                   <div className="col-12">
                     <div 
-                      className="card shadow-sm p-3" 
+                      className="card shadow-sm" 
                       style={{ 
                         borderRadius: '20px',
                         backgroundColor: draggedItem && !draggedFromProperty ? '#f8f9fa' : 'white',
                         border: draggedItem && !draggedFromProperty ? '2px dashed rgb(184, 184, 184)' : '1px dashed rgb(202, 202, 202)',
                         transition: 'all 0.2s ease',
-                        minHeight: '150px',
+                        minHeight: '120px',
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'center',
-                        alignItems: 'center'
+                        alignItems: 'center',
+                        padding: 'clamp(15px, 3vw, 20px)'
                       }}
                       onDragOver={handleDragOver}
                       onDrop={handleDropOnRemove}
                     >
-                      <DeleteIcon style={{ fontSize: '48px', color: 'rgb(184, 184, 184)', marginBottom: '10px' }} />
+                      <DeleteIcon style={{ 
+                        fontSize: 'clamp(36px, 8vw, 48px)', 
+                        color: 'rgb(184, 184, 184)', 
+                        marginBottom: '10px' 
+                      }} />
                       
-                      <p style={{ color: 'rgb(184, 184, 184)', fontSize: '12px', fontStyle: 'italic', textAlign: 'center', margin: 0 }}>
+                      <p style={{ 
+                        color: 'rgb(184, 184, 184)', 
+                        fontSize: 'clamp(11px, 2vw, 12px)', 
+                        fontStyle: 'italic', 
+                        textAlign: 'center', 
+                        margin: 0,
+                        padding: '0 10px'
+                      }}>
                         {draggedItem && !draggedFromProperty ? 'Drop here to remove from favourites' : 'Drag favorites here to remove'}
                       </p>
                     </div>

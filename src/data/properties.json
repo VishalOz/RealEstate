@@ -102,7 +102,7 @@
                 "month":"January", 
                 "day":15, 
                 "year":2023},
-            "floorPlan" : "/images/ho3fp.jpg",
+            "floorPlan" : "/images/ao5fp.png",
             "gallery":[
                 "/images/ao3.jpg",
                 "/images/ao31.png",
@@ -128,11 +128,13 @@
                 "month":"March", 
                 "day":5, 
                 "year":2022},
-            "floorPlan" : "/images/ho3fp.jpg",
+            "floorPlan" : "/images/ho2fp.png",
             "gallery":[
                 "/images/ho2.jpg",
                 "/images/ho21.png",
-                ""
+                "/images/ho22.png",
+                "/images/ho23.png",
+                "/images/ho24.png"
             ]
         },
         {
@@ -153,7 +155,7 @@
                 "month":"May", 
                 "day":30, 
                 "year":2021},
-            "floorPlan" : "/images/ho3fp.jpg",
+            "floorPlan" : "/images/ao5fp.png",
             "gallery":[
                 "/images/ao41.png",
                 "/images/ao42.png",
@@ -208,11 +210,13 @@
                 "month":"May", 
                 "day":30, 
                 "year":2019},
-            "floorPlan" : "/images/ho3fp.jpg",
+            "floorPlan" : "/images/ao5fp.png",
             "gallery":[
-                "/images/ho3.jpg",
-                "/images/ho4.jpg",
-                "/images/ho3.jpg"
+                "/images/ao5.jpg",
+                "/images/ao51.png",
+                "/images/ao52.png",
+                "/images/ao53.png",
+                "/images/ao54.png"
             ]
         }
 ]}
