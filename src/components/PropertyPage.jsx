@@ -24,19 +24,34 @@ const PropertyPage = () => {
   
   if (!propertyData) {
     return (
-      <div style={{ textAlign: 'center', padding: '60px 20px' }}>
-        <h2 style={{ color: '#1a1a1a' }}>Property Not Found</h2>
-        <p style={{ color: '#666' }}>The property you're looking for doesn't exist.</p>
+      <div style={{ 
+        textAlign: 'center', 
+        padding: 'clamp(40px, 10vw, 60px) 20px' 
+      }}>
+        <h2 style={{ 
+          color: '#1a1a1a',
+          fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+          marginBottom: '15px'
+        }}>
+          Property Not Found
+        </h2>
+        <p style={{ 
+          color: '#666',
+          fontSize: 'clamp(14px, 2vw, 16px)',
+          marginBottom: '25px'
+        }}>
+          The property you're looking for doesn't exist.
+        </p>
         <button
           onClick={() => navigate('/search')}
           style={{
-            padding: '10px 20px',
+            padding: 'clamp(10px, 2vw, 12px) clamp(20px, 4vw, 30px)',
             backgroundColor: '#1a1a1a',
             color: 'white',
             border: 'none',
             borderRadius: '20px',
             cursor: 'pointer',
-            fontSize: '14px'
+            fontSize: 'clamp(13px, 2vw, 14px)'
           }}
         >
           Back to Search
@@ -112,7 +127,7 @@ const PropertyPage = () => {
   }
 
   return (
-    <div className={`container`} style={{ width: '100%'}}>
+    <div className={`container`} style={{ width: '100%', padding: '0'}}>
       {/* Lightbox Modal */}
       {selectedGalleryImage && (
         <div
@@ -129,7 +144,8 @@ const PropertyPage = () => {
             justifyContent: 'center',
             alignItems: 'center',
             zIndex: 9999,
-            cursor: 'pointer'
+            cursor: 'pointer',
+            padding: '10px'
           }}
         >
           {/* Close Button */}
@@ -137,23 +153,24 @@ const PropertyPage = () => {
             onClick={closeLightbox}
             style={{
               position: 'absolute',
-              top: '20px',
-              right: '20px',
+              top: 'clamp(10px, 2vw, 20px)',
+              right: 'clamp(10px, 2vw, 20px)',
               background: 'rgba(255, 255, 255, 0.2)',
               border: 'none',
               borderRadius: '50%',
-              width: '50px',
-              height: '50px',
+              width: 'clamp(40px, 8vw, 50px)',
+              height: 'clamp(40px, 8vw, 50px)',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              transition: 'background 0.3s ease'
+              transition: 'background 0.3s ease',
+              zIndex: 10000
             }}
             onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.4)'}
             onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)'}
           >
-            <CloseIcon style={{ color: 'white', fontSize: '28px' }} />
+            <CloseIcon style={{ color: 'white', fontSize: 'clamp(20px, 4vw, 28px)' }} />
           </button>
 
           {/* Previous Button */}
@@ -161,24 +178,25 @@ const PropertyPage = () => {
             onClick={prevImage}
             style={{
               position: 'absolute',
-              left: '20px',
+              left: 'clamp(5px, 2vw, 20px)',
               top: '50%',
               transform: 'translateY(-50%)',
               background: 'rgba(255, 255, 255, 0.2)',
               border: 'none',
               borderRadius: '50%',
-              width: '50px',
-              height: '50px',
+              width: 'clamp(40px, 8vw, 50px)',
+              height: 'clamp(40px, 8vw, 50px)',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              transition: 'background 0.3s ease'
+              transition: 'background 0.3s ease',
+              zIndex: 10000
             }}
             onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.4)'}
             onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)'}
           >
-            <ArrowBackIosNewIcon style={{ color: 'white', fontSize: '24px' }} />
+            <ArrowBackIosNewIcon style={{ color: 'white', fontSize: 'clamp(18px, 3vw, 24px)' }} />
           </button>
 
           {/* Next Button */}
@@ -186,32 +204,33 @@ const PropertyPage = () => {
             onClick={nextImage}
             style={{
               position: 'absolute',
-              right: '20px',
+              right: 'clamp(5px, 2vw, 20px)',
               top: '50%',
               transform: 'translateY(-50%)',
               background: 'rgba(255, 255, 255, 0.2)',
               border: 'none',
               borderRadius: '50%',
-              width: '50px',
-              height: '50px',
+              width: 'clamp(40px, 8vw, 50px)',
+              height: 'clamp(40px, 8vw, 50px)',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              transition: 'background 0.3s ease'
+              transition: 'background 0.3s ease',
+              zIndex: 10000
             }}
             onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.4)'}
             onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)'}
           >
-            <ArrowForwardIosIcon style={{ color: 'white', fontSize: '24px' }} />
+            <ArrowForwardIosIcon style={{ color: 'white', fontSize: 'clamp(18px, 3vw, 24px)' }} />
           </button>
 
           {/* Large Image */}
           <div
             onClick={(e) => e.stopPropagation()}
             style={{
-              maxWidth: '90%',
-              maxHeight: '85%',
+              maxWidth: '95%',
+              maxHeight: '90%',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center'
@@ -224,11 +243,15 @@ const PropertyPage = () => {
                 maxWidth: '100%',
                 maxHeight: '80vh',
                 objectFit: 'contain',
-                borderRadius: '15px',
+                borderRadius: 'clamp(8px, 2vw, 15px)',
                 boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)'
               }}
             />
-            <p style={{ color: 'white', marginTop: '15px', fontSize: '14px' }}>
+            <p style={{ 
+              color: 'white', 
+              marginTop: '10px', 
+              fontSize: 'clamp(12px, 2vw, 14px)' 
+            }}>
               {currentImageIndex + 1} / {galleryDisplay.length}
             </p>
           </div>
@@ -236,14 +259,19 @@ const PropertyPage = () => {
       )}
 
       {/* Full Width Banner Image */}
-      <div style={{ width: '100%', height: '500px', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ 
+        width: '100%', 
+        height: 'clamp(250px, 50vw, 500px)', 
+        position: 'relative', 
+        overflow: 'hidden' 
+      }}>
         <img
           src={bannerImage}
           alt="Property banner"
           style={{
             width: '100%',
             height: '100%',
-            borderRadius: '0 0 30px 30px',
+            borderRadius: '0 0 clamp(15px, 4vw, 30px) clamp(15px, 4vw, 30px)',
             objectFit: 'cover',
             display: 'block'
           }}
@@ -254,20 +282,22 @@ const PropertyPage = () => {
       <div
         style={{
           width: '100%',
-          marginTop: '-200px',
+          marginTop: 'clamp(-80px, -15vw, -200px)',
           position: 'relative',
           zIndex: 1,
-          paddingBottom: '60px'
+          paddingBottom: 'clamp(30px, 6vw, 60px)',
+          padding: '0 clamp(10px, 2vw, 15px)'
         }}
       >
         <div
           className="container"
           style={{
             backgroundColor: 'white',
-            borderRadius: '30px',
-            padding: '40px',
+            borderRadius: 'clamp(20px, 4vw, 30px)',
+            padding: 'clamp(20px, 4vw, 40px)',
             boxShadow: '0 10px 40px rgba(0, 0, 0, 0.1)',
-            maxWidth: '1200px'
+            maxWidth: '1200px',
+            margin: '0 auto'
           }}
         >
           {/* Back Button and Location - Top Section */}
@@ -276,7 +306,9 @@ const PropertyPage = () => {
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              marginBottom: '30px'
+              marginBottom: 'clamp(20px, 4vw, 30px)',
+              flexWrap: 'wrap',
+              gap: '15px'
             }}
           >
             <button
@@ -288,15 +320,15 @@ const PropertyPage = () => {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
-                fontSize: '16px',
+                fontSize: 'clamp(14px, 2vw, 16px)',
                 color: '#333',
-                padding: '0',
+                padding: '8px',
                 transition: 'all 0.3s ease'
               }}
               onMouseEnter={(e) => (e.currentTarget.style.color = '#1a1a1a')}
               onMouseLeave={(e) => (e.currentTarget.style.color = '#333')}
             >
-              <ArrowBackIcon style={{ fontSize: '24px' }} />
+              <ArrowBackIcon style={{ fontSize: 'clamp(20px, 3vw, 24px)' }} />
               
             </button>
 
@@ -305,11 +337,11 @@ const PropertyPage = () => {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
-                fontSize: '14px',
+                fontSize: 'clamp(12px, 2vw, 14px)',
                 color: '#666'
               }}
             >
-              <LocationOnOutlinedIcon style={{ fontSize: '20px' }} />
+              <LocationOnOutlinedIcon style={{ fontSize: 'clamp(16px, 3vw, 20px)' }} />
               <span>{propertyData.location}</span>
             </div>
           </div>
@@ -320,25 +352,27 @@ const PropertyPage = () => {
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'flex-start',
-              marginBottom: '20px',
-              gap: '40px'
+              marginBottom: 'clamp(15px, 3vw, 20px)',
+              gap: 'clamp(15px, 4vw, 40px)',
+              flexWrap: 'wrap'
             }}
           >
-            <div>
+            <div style={{ flex: '1', minWidth: '200px' }}>
               <h1
                 style={{
-                  fontSize: '36px',
+                  fontSize: 'clamp(1.5rem, 5vw, 2.25rem)',
                   fontWeight: '600',
-                  margin: '0 0 15px 0',
+                  margin: '0 0 clamp(10px, 2vw, 15px) 0',
                   color: '#1a1a1a',
-                  fontFamily: '"Inter", sans-serif'
+                  fontFamily: '"Inter", sans-serif',
+                  lineHeight: '1.2'
                 }}
               >
                 {propertyData.name}
               </h1>
               <p
                 style={{
-                  fontSize: '16px',
+                  fontSize: 'clamp(14px, 2vw, 16px)',
                   color: '#666',
                   margin: '0',
                   fontFamily: '"Inter", sans-serif'
@@ -350,12 +384,13 @@ const PropertyPage = () => {
 
             <div
               style={{
-                textAlign: 'right'
+                textAlign: 'right',
+                minWidth: 'fit-content'
               }}
             >
               <p
                 style={{
-                  fontSize: '14px',
+                  fontSize: 'clamp(12px, 2vw, 14px)',
                   color: '#999',
                   margin: '0 0 5px 0',
                   fontFamily: '"Inter", sans-serif'
@@ -365,11 +400,12 @@ const PropertyPage = () => {
               </p>
               <h2
                 style={{
-                  fontSize: '32px',
+                  fontSize: 'clamp(1.5rem, 4vw, 2rem)',
                   fontWeight: '700',
                   margin: '0',
                   color: '#1a1a1a',
-                  fontFamily: '"Inter", sans-serif'
+                  fontFamily: '"Inter", sans-serif',
+                  whiteSpace: 'nowrap'
                 }}
               >
                 {propertyData.currency} {propertyData.price.toLocaleString()}
@@ -381,7 +417,7 @@ const PropertyPage = () => {
           {galleryDisplay.length > 0 && (
             <div
               style={{
-                marginBottom: '40px'
+                marginBottom: 'clamp(20px, 4vw, 40px)'
               }}
             >
               <Slider {...carouselSettings}>
@@ -390,11 +426,12 @@ const PropertyPage = () => {
                     key={index}
                     style={{
                       position: 'relative',
-                      borderRadius: '15px',
+                      borderRadius: 'clamp(10px, 2vw, 15px)',
                       overflow: 'hidden',
-                      height: '180px',
+                      height: 'clamp(120px, 25vw, 180px)',
                       cursor: 'pointer',
-                      transition: 'transform 0.3s ease'
+                      transition: 'transform 0.3s ease',
+                      padding: '0 5px'
                     }}
                     onClick={() => openLightbox(image, index)}
                     onMouseEnter={(e) =>
@@ -411,7 +448,8 @@ const PropertyPage = () => {
                         width: '100%',
                         height: '100%',
                         objectFit: 'cover',
-                        display: 'block'
+                        display: 'block',
+                        borderRadius: 'clamp(8px, 2vw, 12px)'
                       }}
                     />
                   </div>
@@ -421,62 +459,70 @@ const PropertyPage = () => {
           )}
 
           {/* Tabs Section */}
-          <div style={{ marginTop: '40px' }}>
+          <div style={{ marginTop: 'clamp(20px, 4vw, 40px)' }}>
             <Tabs selectedIndex={selectedTabIndex} onSelect={(index) => setSelectedTabIndex(index)}>
               <TabList
                 style={{
                   borderBottom: '2px solid #e0e0e0',
                   display: 'flex',
-                  gap: '40px',
+                  gap: 'clamp(15px, 4vw, 40px)',
                   padding: '0 0 15px 0',
                   margin: '0',
-                  listStyle: 'none'
+                  listStyle: 'none',
+                  overflowX: 'auto',
+                  flexWrap: 'nowrap'
                 }}
               >
                 <Tab
                   style={{
-                    padding: '10px 0',
+                    padding: 'clamp(8px, 2vw, 10px) 0',
                     cursor: 'pointer',
-                    fontSize: '16px',
+                    fontSize: 'clamp(14px, 2vw, 16px)',
                     fontFamily: '"Inter", sans-serif',
                     fontWeight: selectedTabIndex === 0 ? '600' : '400',
                     color: selectedTabIndex === 0 ? '#1a1a1a' : '#999',
                     border: 'none',
                     borderBottom: selectedTabIndex === 0 ? '3px solid #1a1a1a' : 'none',
                     background: 'none',
-                    transition: 'all 0.3s ease'
+                    transition: 'all 0.3s ease',
+                    whiteSpace: 'nowrap',
+                    minWidth: 'fit-content'
                   }}
                 >
                   Description
                 </Tab>
                 <Tab
                   style={{
-                    padding: '10px 0',
+                    padding: 'clamp(8px, 2vw, 10px) 0',
                     cursor: 'pointer',
-                    fontSize: '16px',
+                    fontSize: 'clamp(14px, 2vw, 16px)',
                     fontFamily: '"Inter", sans-serif',
                     fontWeight: selectedTabIndex === 1 ? '600' : '400',
                     color: selectedTabIndex === 1 ? '#1a1a1a' : '#999',
                     border: 'none',
                     borderBottom: selectedTabIndex === 1 ? '3px solid #1a1a1a' : 'none',
                     background: 'none',
-                    transition: 'all 0.3s ease'
+                    transition: 'all 0.3s ease',
+                    whiteSpace: 'nowrap',
+                    minWidth: 'fit-content'
                   }}
                 >
                   Floor Plan
                 </Tab>
                 <Tab
                   style={{
-                    padding: '10px 0',
+                    padding: 'clamp(8px, 2vw, 10px) 0',
                     cursor: 'pointer',
-                    fontSize: '16px',
+                    fontSize: 'clamp(14px, 2vw, 16px)',
                     fontFamily: '"Inter", sans-serif',
                     fontWeight: selectedTabIndex === 2 ? '600' : '400',
                     color: selectedTabIndex === 2 ? '#1a1a1a' : '#999',
                     border: 'none',
                     borderBottom: selectedTabIndex === 2 ? '3px solid #1a1a1a' : 'none',
                     background: 'none',
-                    transition: 'all 0.3s ease'
+                    transition: 'all 0.3s ease',
+                    whiteSpace: 'nowrap',
+                    minWidth: 'fit-content'
                   }}
                 >
                   Google Maps
@@ -486,30 +532,50 @@ const PropertyPage = () => {
               <TabPanel>
                 <div
                   style={{
-                    padding: '30px 0',
-                    fontSize: '16px',
+                    padding: 'clamp(20px, 4vw, 30px) 0',
+                    fontSize: 'clamp(14px, 2vw, 16px)',
                     lineHeight: '1.8',
                     color: '#666',
                     fontFamily: '"Inter", sans-serif'
                   }}
                 >
-                  <h3 style={{ color: '#1a1a1a', marginTop: '0' }}>About this property</h3>
-                  <p>{propertyData.description}</p>
+                  <h3 style={{ 
+                    color: '#1a1a1a', 
+                    marginTop: '0',
+                    fontSize: 'clamp(1.25rem, 3vw, 1.5rem)',
+                    marginBottom: 'clamp(10px, 2vw, 15px)'
+                  }}>
+                    About this property
+                  </h3>
+                  <p style={{ marginBottom: 'clamp(20px, 4vw, 30px)' }}>
+                    {propertyData.description}
+                  </p>
                   
-                  <div style={{ marginTop: '30px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '30px' }}>
+                  <div style={{ 
+                    marginTop: 'clamp(20px, 4vw, 30px)', 
+                    display: 'grid', 
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+                    gap: 'clamp(20px, 4vw, 30px)' 
+                  }}>
                     <div>
-                      <h4 style={{ color: '#1a1a1a', marginBottom: '10px' }}>Property Details</h4>
+                      <h4 style={{ 
+                        color: '#1a1a1a', 
+                        marginBottom: 'clamp(10px, 2vw, 15px)',
+                        fontSize: 'clamp(1rem, 2.5vw, 1.25rem)'
+                      }}>
+                        Property Details
+                      </h4>
                       <ul style={{ listStyle: 'none', padding: '0', margin: '0' }}>
-                        <li style={{ marginBottom: '8px' }}>
+                        <li style={{ marginBottom: '8px', fontSize: 'clamp(13px, 2vw, 15px)' }}>
                           <strong>Type:</strong> {propertyData.type}
                         </li>
-                        <li style={{ marginBottom: '8px' }}>
+                        <li style={{ marginBottom: '8px', fontSize: 'clamp(13px, 2vw, 15px)' }}>
                           <strong>Bedrooms:</strong> {propertyData.bedrooms}
                         </li>
-                        <li style={{ marginBottom: '8px' }}>
+                        <li style={{ marginBottom: '8px', fontSize: 'clamp(13px, 2vw, 15px)' }}>
                           <strong>Tenure:</strong> {propertyData.tenure}
                         </li>
-                        <li style={{ marginBottom: '8px' }}>
+                        <li style={{ marginBottom: '8px', fontSize: 'clamp(13px, 2vw, 15px)' }}>
                           <strong>Location:</strong> {propertyData.location}
                         </li>
                       </ul>
@@ -521,7 +587,7 @@ const PropertyPage = () => {
               <TabPanel>
                 <div
                   style={{
-                    padding: '30px 0',
+                    padding: 'clamp(20px, 4vw, 30px) 0',
                     textAlign: 'center',
                     fontFamily: '"Inter", sans-serif'
                   }}
@@ -534,13 +600,19 @@ const PropertyPage = () => {
                         style={{
                           maxWidth: '100%',
                           height: 'auto',
-                          borderRadius: '15px',
+                          borderRadius: 'clamp(10px, 2vw, 15px)',
                           boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)'
                         }}
                       />
                     </div>
                   ) : (
-                    <p style={{ fontSize: '16px', color: '#999' }}>Floor plan not available</p>
+                    <p style={{ 
+                      fontSize: 'clamp(14px, 2vw, 16px)', 
+                      color: '#999',
+                      padding: 'clamp(20px, 4vw, 30px)'
+                    }}>
+                      Floor plan not available
+                    </p>
                   )}
                 </div>
               </TabPanel>
@@ -548,7 +620,7 @@ const PropertyPage = () => {
               <TabPanel>
                 <div
                   style={{
-                    padding: '30px 0',
+                    padding: 'clamp(20px, 4vw, 30px) 0',
                     fontFamily: '"Inter", sans-serif'
                   }}
                 >
@@ -556,30 +628,41 @@ const PropertyPage = () => {
                     <div>
                       <iframe
                         width="100%"
-                        height="500"
-                        style={{ border: 'none', borderRadius: '15px' }}
+                        height={window.innerWidth < 768 ? "300" : "500"}
+                        style={{ 
+                          border: 'none', 
+                          borderRadius: 'clamp(10px, 2vw, 15px)' 
+                        }}
                         src={`https://maps.google.com/maps?q=${propertyData.coordinates.lat},${propertyData.coordinates.lng}&z=15&output=embed`}
                         title="Property Location"
                         loading="lazy"
                       ></iframe>
-                      <p style={{ marginTop: '15px', fontSize: '14px', color: '#666' }}>
+                      <p style={{ 
+                        marginTop: '15px', 
+                        fontSize: 'clamp(13px, 2vw, 14px)', 
+                        color: '#666' 
+                      }}>
                         <a 
                           href={`https://maps.google.com/maps?q=${propertyData.coordinates.lat},${propertyData.coordinates.lng}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          style={{ color: '#1a1a1a', textDecoration: 'none' }}
+                          style={{ 
+                            color: '#1a1a1a', 
+                            textDecoration: 'none',
+                            fontWeight: '500'
+                          }}
                         >
-                          Open in Google Maps
+                          Open in Google Maps →
                         </a>
                       </p>
                     </div>
                   ) : (
                     <div
                       style={{
-                        padding: '30px',
+                        padding: 'clamp(20px, 4vw, 30px)',
                         textAlign: 'center',
                         color: '#999',
-                        fontSize: '16px'
+                        fontSize: 'clamp(14px, 2vw, 16px)'
                       }}
                     >
                       <p>Location map coming soon...</p>
