@@ -42,7 +42,7 @@ const Footer = () => {
             <ul className="footer-contact">
               <li>info@yourniwahana.com</li>
               <li>(+94) 77 683 1413</li>
-              <li>51/4 Central Avenue, Canada</li>
+              <li>51/4 Aniyakanda road, Kandana</li>
             </ul>
           </div>
         </div>
