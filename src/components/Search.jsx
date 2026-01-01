@@ -56,7 +56,7 @@ const Search = () => {
     // Filter properties based on the criteria
     const filtered = properties.filter((property) => {
       if (filters.propertyType) {
-        const typeMatch = property.type.toLowerCase() === filters.propertyType.toLowerCase() // Property Type filter
+        const typeMatch = property.type=== filters.propertyType // Property Type filter
         if (!typeMatch) return false
       }
 
@@ -192,8 +192,8 @@ const Search = () => {
                   size="small"
                 >
                   <MenuItem value="">All Types</MenuItem>
-                  <MenuItem value="house">House</MenuItem>
-                  <MenuItem value="flat">Flat</MenuItem>
+                  <MenuItem value="House">House</MenuItem>
+                  <MenuItem value="Flat">Flat</MenuItem>
                 </TextField>
               </div>
 
