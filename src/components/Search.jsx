@@ -449,7 +449,7 @@ const Search = () => {
                           borderRadius: '10px',
                           transition: 'all 0.2s ease',
                           backgroundColor: draggedItem && draggedFromProperty ? '#f0f8ff' : 'transparent',
-                          border: draggedItem && draggedFromProperty ? '2px dashed #ffd700' : 'none'
+                          border: draggedItem && draggedFromProperty ? '2px dashed rgb(170, 170, 168)' : 'none'
                         }}
                       >
                         {favourites.length === 0 ? (
@@ -490,7 +490,7 @@ const Search = () => {
                                     padding: 'clamp(10px, 2vw, 12px)',
                                     backgroundColor: '#f9f9f9',
                                     borderRadius: '10px',
-                                    borderLeft: '4px solid #ffd700',
+                                    borderLeft: '4px solid rgb(0, 0, 0)',
                                     display: 'flex',
                                     justifyContent: 'space-between',
                                     alignItems: 'flex-start',
