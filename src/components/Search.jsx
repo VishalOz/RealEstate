@@ -592,8 +592,8 @@ const Search = () => {
                       className="card shadow-sm" 
                       style={{ 
                         borderRadius: '20px',
-                        backgroundColor: draggedItem && !draggedFromProperty ? '#f8f9fa' : 'white',
-                        border: draggedItem && !draggedFromProperty ? '2px dashed rgb(184, 184, 184)' : '1px dashed rgb(202, 202, 202)',
+                        backgroundColor: draggedItem && !draggedFromProperty ? '#ffebee' : 'white',
+                        border: draggedItem && !draggedFromProperty ? '2px dashed #d32f2f' : '1px dashed rgb(202, 202, 202)',
                         transition: 'all 0.2s ease',
                         minHeight: '120px',
                         display: 'flex',
